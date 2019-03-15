@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>test selectores</title>
+  <style>
+  
+  button {
+    font-size: 14px;
+  }
+  </style>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+  
+  <script>
+	$( document ).ready(function() {
+		console.log( "ready!.  Con F12 podes abrir la consola para hacer pruebas" );
+		console.log($("#input1").val())
+		console.log($(".input").length)
+	});
+  </script>
+
+</head>
+<body>
+ 
+<div id="block1">Block1</div>
+<div id="block2">Block2</div>
+ <input type="text" class="input" id="input1" value="input1">
+ 
+ <input type="text" class="input" id="input2" value="input2">
+ 
+ <select name="select1" class="select">
+	<option value="1">opcion 1</option>
+	<option value="2">opcion 2</option>
+	<option value="3">opcion 3</option>
+ </select>
+ 
+</body>
+</html>
