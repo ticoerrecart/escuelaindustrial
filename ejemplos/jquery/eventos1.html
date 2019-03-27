@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>eventos 1</title>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+  <script>
+	$(document).ready(function(){
+		$( "#go1" ).click(function() {
+			console.log("click en boton go1");
+			$( "#block3" ).val($( "#block1" ).val() + $( "#block2" ).val());
+		});
+	 
+		$( "#go4" ).click(function() {
+			console.log("click en boton go4");
+			$( "#block3" ).val("");
+		});
+		
+	});
+ 
+</script>
+</head>
+<body>
+<div>
+	<button id="go1">&raquo; Boton1</button>
+	<button id="go4">&raquo; Boton4</button>
+</div>
+
+<div>
+	<input type="text" id="block1" value="block1">
+	<br/>
+	<input type="text" id="block2" value="block2">
+	<br/>
+	<input type="text" id="block3" value="">
+ </div>
+</body>
+</html>
