@@ -9,30 +9,84 @@
     font-size: 14px;
   }
   </style>
-  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="jquery-3.3.1.js"></script>
   
   <script>
 	$( document ).ready(function() {
 		console.log( "ready!.  Con F12 podes abrir la consola para hacer pruebas" );
-		console.log($("#input1").val())
-		console.log($(".input").length)
+		console.log($("#input1").val());
+		console.log($(".input").length);
+		
+		$("#boton").click(function(){
+			$("#cantDivs").html($("div[class='block']").length);
+			$("#cantInputs").html($("input").length);
+			$("#cantInputsMiClase").html($("input[class='miClase input']").length);
+			$("#cantSelects").html($("select").length);
+			$("#cantTextareas").html($("textarea").length);
+			
+		})
 	});
   </script>
 
 </head>
 <body>
  
-<div id="block1">Block1</div>
-<div id="block2">Block2</div>
- <input type="text" class="input" id="input1" value="input1">
- 
- <input type="text" class="input" id="input2" value="input2">
+<div id="block1" class="block">Block1 con clase block</div>
+<div id="block2" class="block">Block2 con clase block</div>
+ <label>input clase input</label><input type="text" class="input" id="input1" value="input1">
+ <br>
+ <label>input clase input</label><input type="text" class="input" id="input2" value="input2">
+ <br>
+ <label>input clase miClase input</label><input type="text" class="miClase input" id="input3" value="input3">
+ <br>
+ <label>input clase miClase input</label><input type="text" class="miClase input" id="input4" value="input4">
+ <br>
  
  <select name="select1" class="select">
 	<option value="1">opcion 1</option>
 	<option value="2">opcion 2</option>
 	<option value="3">opcion 3</option>
  </select>
+ <br>
  
+ <textarea rows="10" cols="20">
+ 	Esto es un textarea
+ </textarea>
+ 
+ <br/><br/><br/><br/>
+ 
+ <div>
+ 	<span>Cantidad de Divs con clase block:</span>
+ 	<span><label id="cantDivs"></label></span>
+ </div>
+ 
+  <div>
+ 	<span>Cantidad de Inputs con clase miclase:</span>
+ 	<span><label id="cantInputsMiClase"></label></span>
+ </div>
+ 
+ <div>
+ 	<span>Cantidad de Inputs:</span>
+ 	<span><label id="cantInputs"></label></span>
+ </div>
+ 
+ <div>
+ 	<span>Cantidad de Selects:</span>
+ 	<span><label id="cantSelects"></label></span>
+ </div>
+ 
+ <div>
+ 	<span>Cantidad de Textareas:</span>
+ 	<span><label id="cantTextareas"></label></span>
+ </div>
+ 
+ 
+ 
+ <br/>
+<div>
+	<span>
+		<input type="button" id="boton" value="Calcular cantidades">
+	</span>
+</div>
 </body>
 </html>
