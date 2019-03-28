@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>test iteradores</title>
+  <style>
+  
+	  button {
+	    font-size: 14px;
+	  }
+	  
+	  p {
+	  	font-size:large;
+	  	font-weight: bold;
+	  }
+  </style>
+  <script src="jquery-3.3.1.js"></script>
+  
+  <script>
+	$( document ).ready(function() {
+		
+		$("#botonNombre").click(function(){
+			console.log("click en boton nombre");
+			
+			$(".nombre").each(function(indx){
+				console.log("posicion: " + indx + "-" + $(this).val());
+				var nombre = $(this).val();
+
+				alert(nombre);
+			});
+			
+		});
+		
+		$("#botonFilter").click(function(){
+			console.log("click en boton filter");
+			var mayores = ($(".edad").filter(function(indx){
+				return $(this).val()>=18;
+			}));
+			
+			$(mayores).each(function(indice){
+				console.log($(this));
+				//alert("Edad:" + $(this).val());
+				
+				
+				//esta es una manera mas compleja de recuperar el nombre de la persona mayor de edad
+				var idEdad = $(this).attr("id");
+				console.log(idEdad);
+				var indice = idEdad.substr(idEdad.indexOf("-")+1);//tomo del id de la edad lo que le sigue despues del guion
+				console.log(indice-1)
+				//alert("Nombre:" +  $("#input-" + parseInt(indice-1)).val() );//tomo el id previo, dado que el nombre de la persona lo cree en la pagina con un id menor
+				
+				
+				//esta es otra manera de recuperar el nombre de la persona mayor de edad
+				//es importante saber que closest trabaja con los ancestros!!
+				//es importante saber que find trabaja con los descendientes!!
+				alert("Nombre:" + $(this).closest("div").find("input.nombre").val() + " - Edad:" + $(this).val());
+				
+				//acá la propuesta es probar que devuelve $(this).parent(), etc
+			});	
+			
+		});
+		
+		$("#botonSumar").click(function(){
+			$(".edad").map(function(){
+				$(this).val(parseInt($(this).val()) + 1);
+			});
+		});
+		
+	});
+  </script>
+
+</head>
+<body>
+
+  
+ <p>tabla con div y span  en negrita y mas grande</p>
+ <div id="tabla2">
+ 	 <div align="center" style="width: 10%;">
+	 	<span style="border:1px solid red;text-align:center">Nombre</span>
+	 	<span style="border:1px solid red;text-align:center">Edad</span>
+	 </div>
+	 <div id="aa">
+	 	<span><input type="text" class="input nombre" id="input-5" value="Juan"></span>
+	 	<span><input type="text" class="input edad" id="input-6" value="10"></span>
+	 	<span>
+	 		<input type="checkbox" class="checkbox" id="check-1" disabled="disabled">
+	 		<span id="mensaje-1"></span><!-- verificar acá que poniendo un div, el mensaje queda debajo!!! probarlo!!! -->
+	 	</span>
+	 </div>
+	 <div id="bb">
+	 	<span><input type="text" class="input nombre" id="input-7" value="Maria"></span>
+	 	<span><input type="text" class="input edad" id="input-8" value="8"></span>
+	 	<span>
+	 		<input type="checkbox" class="checkbox" id="check-2" disabled="disabled">
+	 		<span id="mensaje-2"></span>
+	 	</span>
+	 </div>
+	 <div id="cc">
+	 	<span><input type="text" class="input nombre" id="input-9" value="Juana"></span>
+	 	<span><input type="text" class="input edad" id="input-10" value="12"></span>
+	 	<span>
+	 		<input type="checkbox" class="checkbox" id="check-3" disabled="disabled">
+	 		<span id="mensaje-3"></span>
+	 	</span>
+	 </div>
+	 
+	 <div>
+	 	<span><input type="button" id="botonNombre" value="Iterar sobre los nombres (usando each)"></span>
+	 	<span><input type="button" id="botonFilter" value="Filtrar las personas con edad mayor a 18 (usando filter, each y find)"></span>
+	 	<span><input type="button" id="botonSumar" value="Sumar 1 a las edades (usando map)"></span>
+	 </div>
+ </div>
+
+
+</body>
+</html>
