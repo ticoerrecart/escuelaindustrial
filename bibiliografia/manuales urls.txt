@@ -1,0 +1,3 @@
+http://tutorialesenpdf.com/php/
+http://www.detodoprogramacion.com
+https://github.com/EbookFoundation/free-programming-books/blob/master/free-programming-books.md
