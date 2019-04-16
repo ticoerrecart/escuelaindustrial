@@ -1,0 +1,38 @@
+<html>
+<head>
+	<script type="text/javascript">
+		function printMatrix (matrix) {
+		  for (let i = 0; i < matrix.length; i++) {
+		    var line = matrix[i];
+		    for (let i = 0; i < line.length; i++) {
+		      const element = line[i];
+		      console.log(element);
+		    }
+		  }
+		}
+		
+		function printMatrixVar (matrix) {
+		  for (var i = 0; i < matrix.length; i++) {
+		    var line = matrix[i];
+		    for (var i = 0; i < line.length; i++) {
+		      var element = line[i];
+		      console.log(element);
+		    }
+		  }
+		}
+		
+		const matrix = [
+			  [1, 2, 3],
+			  [4, 5, 6],
+			  [7, 8, 9]
+			];
+
+		console.log("con let (variables con alcance de bloque)")
+		printMatrix(matrix);
+		console.log("con var (variables con alcance de function)")
+		printMatrixVar(matrix);
+	</script>
+</head>
+<body>
+</body>
+</html>
