@@ -18,51 +18,59 @@
 
 </head>
 <body>
-
-	<form action="accion1.php" id="form1">
-		<input type="text" name="nombre" value="" placeholder="nombre"><br/>
-		<input type="text" name="apellido" value="" placeholder="apellido"><br/>
-		<input type="text" name="telefono" value="" placeholder="telefono"><br/>
-		<select name="equipoFavorito"><br/>
-			<optgroup label="local">
-				<option value="CACH">Club Atletico Chascomus</option>
-				<option value="CDCH">Club Deportivo Chascomus</option>
-			</optgroup>
-			<optgroup label="internacional">
-				<option value="FCB">Futbol Club Barcelona</option>
-				<option value="RMCF">Real Madrid Club de Futbol</option>
-			</optgroup>
+	<h2>Formularios</h2>
+	<div  style="display: flex;">
+		<span>
+			<h4>Submit por GET</h4>
+			<form action="accion1.php" id="form1">
+				<input type="text" name="nombre" value="" placeholder="nombre"><br/>
+				<input type="text" name="apellido" value="" placeholder="apellido"><br/>
+				<input type="text" name="telefono" value="" placeholder="telefono"><br/>
+				<select name="equipoFavorito"><br/>
+					<optgroup label="local">
+						<option value="CACH">Club Atletico Chascomus</option>
+						<option value="CDCH">Club Deportivo Chascomus</option>
+					</optgroup>
+					<optgroup label="internacional">
+						<option value="FCB">Futbol Club Barcelona</option>
+						<option value="RMCF">Real Madrid Club de Futbol</option>
+					</optgroup>
+					
+				</select>
+				<br/>
+				  <input type="submit" value="Submitimos formulario 1 por GET">
+			</form>
 			
-		</select>
-		<br/>
-		  <input type="submit" value="Submitimos formulario 1 por GET">
-	</form>
-	
-	<input type="button" onclick="verFormulario('form1');" value="Ver datos del formulario 1">
-	
-	<br/><br/><br/>
-	
-	<form action="accion2.php" id="form2" method="post">
-		<input type="text" name="nombre" value="" placeholder="nombre"><br/>
-		<input type="text" name="apellido" value="" placeholder="apellido"><br/>
-		<input type="text" name="telefono" value="" placeholder="telefono"><br/>
-		<select name="equipoFavorito"><br/>
-			<optgroup label="local">
-				<option value="CACH">Club Atletico Chascomus</option>
-				<option value="CDCH">Club Deportivo Chascomus</option>
-				<option value="CP">Los Picas</option>
-			</optgroup>
-			<optgroup label="internacional">
-				<option value="FCB">Futbol Club Barcelona</option>
-				<option value="RMCF">Real Madrid Club de Futbol</option>
-				<option value="AB">Atletic Bilbao</option>
-			</optgroup>
+			<input type="button" onclick="verFormulario('form1');" value="Ver datos del formulario 1 en consola (F12)">
 			
-		</select>
-		<br/>
-		  <input type="submit" value="Submitimos formulario por POST">
-	</form>
-	
-	<input type="button" onclick="verFormulario('form2');" value="Ver datos del formulario 2">
+		</span>
+			
+		<span>
+			<h4>Submit por POST</h4>
+			<form action="accion2.php" id="form2" method="post">
+				<input type="text" name="nombre" value="" placeholder="nombre"><br/>
+				<input type="text" name="apellido" value="" placeholder="apellido"><br/>
+				<input type="text" name="telefono" value="" placeholder="telefono"><br/>
+				<select name="equipoFavorito"><br/>
+					<optgroup label="local">
+						<option value="CACH">Club Atletico Chascomus</option>
+						<option value="CDCH">Club Deportivo Chascomus</option>
+						<option value="CP">Los Picas</option>
+					</optgroup>
+					<optgroup label="internacional">
+						<option value="FCB">Futbol Club Barcelona</option>
+						<option value="RMCF">Real Madrid Club de Futbol</option>
+						<option value="AB">Atletic Bilbao</option>
+					</optgroup>
+					
+				</select>
+				<br/>
+				  <input type="submit" value="Submitimos formulario por POST">
+			</form>
+			
+			<input type="button" onclick="verFormulario('form2');" value="Ver datos del formulario 2 en consola (F12)">
+		
+		</span>
+	</div>
 </body>
 </html>
