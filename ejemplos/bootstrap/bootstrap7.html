@@ -1,0 +1,365 @@
+<!DOCTYPE html> <!-- definimos el doctype -->
+<html lang="en">
+<head>
+  <title>Bootstrap Ejemplo de tablas "table" bootstrap y comparativa con el sistema de grillas</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" >
+  <script src="../jquery/jquery-3.3.1.js"></script>
+  <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+  
+  <script type="text/javascript">
+  	$(document).ready(function(){
+  		console.log("bootstrap con jquery!")
+  	})
+  </script>
+  
+</head>
+<body>
+
+
+<div class="container">
+
+<h2>Tabla 1 sin bootstrap</h2>
+  <table>
+	  	<tr>
+	  		<td>
+	  			Nombre
+	  		</td>
+	  		<td>
+	  			Apellido
+	  		</td>
+	  	</tr>
+  	<tr>
+  		<td>
+  			Maria
+  		</td>
+  		<td>
+  			Diaz
+  		</td>
+  	</tr>
+  	<tr>
+  		<td>
+  			Francisco
+  		</td>
+  		<td>
+  			Alberti
+  		</td>
+  	</tr>
+  </table>
+  
+  
+  <h2>Tabla 2 con bootstrap (table)</h2>
+  <table class="table">
+	  	<tr>
+	  		<td>
+	  			Nombre
+	  		</td>
+	  		<td>
+	  			Apellido
+	  		</td>
+	  	</tr>
+  	<tr>
+  		<td>
+  			Maria
+  		</td>
+  		<td>
+  			Diaz
+  		</td>
+  	</tr>
+  	<tr>
+  		<td>
+  			Francisco
+  		</td>
+  		<td>
+  			Alberti
+  		</td>
+  	</tr>
+  </table>
+  
+   <h2>Tabla 3 con bootstrap (table table-striped)</h2>
+  <table class="table table-striped">
+	  	<tr>
+	  		<td>
+	  			Nombre
+	  		</td>
+	  		<td>
+	  			Apellido
+	  		</td>
+	  	</tr>
+  	<tr>
+  		<td>
+  			Maria
+  		</td>
+  		<td>
+  			Diaz
+  		</td>
+  	</tr>
+  	<tr>
+  		<td>
+  			Francisco
+  		</td>
+  		<td>
+  			Alberti
+  		</td>
+  	</tr>
+  </table>
+  
+    <h2>Tabla 4 con bootstrap (table table-bordered)</h2>
+  <table class="table table-bordered">
+	  	<tr>
+	  		<td>
+	  			Nombre
+	  		</td>
+	  		<td>
+	  			Apellido
+	  		</td>
+	  	</tr>
+  	<tr>
+  		<td>
+  			Maria
+  		</td>
+  		<td>
+  			Diaz
+  		</td>
+  	</tr>
+  	<tr>
+  		<td>
+  			Francisco
+  		</td>
+  		<td>
+  			Alberti
+  		</td>
+  	</tr>
+  </table>
+  
+  
+      <h2>Tabla 5 con bootstrap (table table-hover)</h2>
+  <table class="table table-hover">
+	  	<tr>
+	  		<td>
+	  			Nombre
+	  		</td>
+	  		<td>
+	  			Apellido
+	  		</td>
+	  	</tr>
+  	<tr>
+  		<td>
+  			Maria
+  		</td>
+  		<td>
+  			Diaz
+  		</td>
+  	</tr>
+  	<tr>
+  		<td>
+  			Francisco
+  		</td>
+  		<td>
+  			Alberti
+  		</td>
+  	</tr>
+  </table>
+
+
+    <h2>Tabla 6 con bootstrap (y clases de colores de bootstrap)</h2>
+  <table class="table">
+	  	<tr class="active">
+	  		<td>
+	  			Nombre
+	  		</td>
+	  		<td>
+	  			Apellido
+	  		</td>
+	  	</tr>
+  	<tr class="danger">
+  		<td>
+  			Maria
+  		</td>
+  		<td>
+  			Diaz
+  		</td>
+  	</tr>
+  	<tr class="info">
+  		<td>
+  			Francisco
+  		</td>
+  		<td>
+  			Alberti
+  		</td>
+  	</tr>
+  </table>
+
+
+<h2>Tabla 7 con bootstrap (table-responsive)</h2>
+<h4>La clase table-responsive createa una tabla responsive, a la cual le aparece una barra horizontal cuando la resolucion de la ventana esta por debajo de  768px. Cuando el tamaño de la ventana es mayor, no hay diferencia con una tabla bootstrap comun</h4>
+  <div class="table-responsive">
+  <table class="table">
+	  	<tr class="warning">
+	  		<td>
+	  			Nombre
+	  		</td>
+	  		<td>
+	  			Apellido
+	  		</td>
+	  		<td>
+	  			Telefono
+	  		</td>
+	  		<td>
+	  			Direccion
+	  		</td>
+	  	</tr>
+  	<tr class="info">
+  		<td>
+  			Maria
+  		</td>
+  		<td>
+  			Diaz
+  		</td>
+  		<td>
+  			45646
+  		</td>
+  		<td>
+  			Chacabuco 100
+  		</td>
+  	</tr>
+  	<tr class="success">
+  		<td>
+  			Francisco
+  		</td>
+  		<td>
+  			Alberti
+  		</td>
+  		<td>
+  			45646
+  		</td>
+  		<td>
+  			Garay 500
+  		</td>
+  	</tr>
+  </table>
+</div>
+
+
+<h4>Esta otra es igual pero sin table-responsive.  Al achicar la ventana del navegador, va a terminar agregando una barra de scroll horizontal a toda la pagina porque no entra todo el contenido.  Si usaramos como arriba, solo agrega el scroll horizontal
+a la tabla</h4>
+  <table class="table">
+	  	<tr class="warning">
+	  		<td>
+	  			Nombre
+	  		</td>
+	  		<td>
+	  			Apellido
+	  		</td>
+	  		<td>
+	  			Telefono
+	  		</td>
+	  		<td>
+	  			Direccion
+	  		</td>
+	  	</tr>
+  	<tr class="info">
+  		<td>
+  			Maria
+  		</td>
+  		<td>
+  			Diaz
+  		</td>
+  		<td>
+  			45646
+  		</td>
+  		<td>
+  			Chacabuco 100
+  		</td>
+  	</tr>
+  	<tr class="success">
+  		<td>
+  			Francisco
+  		</td>
+  		<td>
+  			Alberti
+  		</td>
+  		<td>
+  			45646
+  		</td>
+  		<td>
+  			Garay 500
+  		</td>
+  	</tr>
+  </table>
+
+
+
+
+
+
+
+<h2>"Tabla" 8 con sistema de grillas de bootstrap y clases row y col</h2>
+<h4>Notar que NO es una tabla.  Ver como se comporta al achicar el tamaño de la ventana</h4>
+  <div class="row"  style="border-bottom: 1px solid;font-weight: bold;">
+	  	<div class="col-md-3">
+	  			Nombre
+	  		</div>
+	  		<div class="col-md-3">
+	  			Apellido
+	  		</div>
+	  		<div class="col-md-3">
+	  			Telefono
+	  		</div>
+	  		<div class="col-md-3">
+	  			Direccion
+	  		</div>
+	</div>
+  	
+  	<div class="row" style="border-bottom: 1px solid;">
+  		<div class="col-md-3">
+  			Maria
+  		</div>
+  		<div class="col-md-3">
+  			Diaz
+  		</div>
+  		<div class="col-md-3">
+  			111111
+  		</div>
+  		<div class="col-md-3">
+  			Chacabuco 100
+  		</div>
+  	</div>
+  	
+  	<div class="row" style="border-bottom: 1px solid;">
+  		<div class="col-md-3">
+  			Francisco
+  		</div>
+  		<div class="col-md-3">
+  			Alberti
+  		</div>
+  		<div class="col-md-3">
+  			5555555
+  		</div>
+  		<div class="col-md-3">
+  			Garay 500
+  		</div>
+  	</div>
+  	
+  	<div class="row">
+  		<div class="col-md-12">
+  			&nbsp;
+  		</div>
+  	</div>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+</body>
+</html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html> <!-- definimos el doctype -->
 <html lang="en">
 <head>
-  <title>Bootstrap Ejemplo 3</title>
+  <title>Bootstrap Ejemplo sistema de grillas</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
@@ -19,11 +19,61 @@
 <body>
 
 
-<div class="container" style="background-color: grey; ">
+<div class="container">
+	<p>Las opciones de clase para cada col son:</p>
+	<ul>
+		<li>col-xs- (celular)</li>
+		<li>col-sm- (tablets)</li>
+		<li>col-md- (pc/notebook)</li>
+		<li>col-lg- (pc/notebook pantalla grande)</li>
+	</ul>
+
+	<div class="row text-center" style="background-color: lightgreen;">
+		<div class="col-sm-12">Columna de tamaño small</div>
+	</div>
 	<div class="row">
-	  <div class="col-lg-4">.col-lg-4</div>
-	  <div class="col-lg-4">.col-lg-4</div>
-	  <div class="col-lg-4">.col-lg-4</div>
+		<div class="col-sm-3 text-center"  style="background-color: lightgreen;">col-sm-3 (centrado)</div>
+	  	<div class="col-sm-3 text-left"  style="background-color: lightblue;">col-sm-3 (alineado a izq)</div>
+	  	<div class="col-sm-3 text-right"  style="background-color: orange;">col-sm-3 (alineado a der)</div>
+	  	<div class="col-sm-3 text-justify"  style="background-color: grey;">col-sm-3 (justificado)</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-12">&nbsp;</div>
+	</div>
+	
+	<div class="row text-center" style="background-color: lightblue;">
+		<div class="col-lg-12">Columna de tamaño large</div>
+	</div>
+	<div class="row" style="background-color: lightblue;">
+	  <div class="col-lg-4">col-lg-4</div>
+	  <div class="col-lg-4">col-lg-4</div>
+	  <div class="col-lg-4">col-lg-4</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-12">&nbsp;</div>
+	</div>
+	
+	
+	<div class="row text-center" style="background-color: yellow;">
+		<div class="col-md-12">col 12</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-12">&nbsp;</div>
+	</div>
+	
+	<div class="row" style="background-color: orange;">
+		<div class="col-md-3">
+			Columna de 3
+		</div>
+		<div class="col-md-6">
+			Columna de 6
+		</div>
+		<div class="col-md-3">
+			Columna 3
+		</div>
 	</div>
 </div>
 
