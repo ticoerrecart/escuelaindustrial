@@ -1,0 +1,234 @@
+<!DOCTYPE html> <!-- definimos el doctype -->
+<html lang="en">
+<head>
+  <title>Bootstrap Ejemplo de Encabezado de página/clase well/ alerts!/ etc etc</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" >
+  <script src="../jquery/jquery-3.3.1.js"></script>
+  <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+  
+  <style>
+  	.miClase{
+  		line-height: 20px;
+  		font-weight: bold;
+  	}
+  </style>
+  <script type="text/javascript">
+  	$(document).ready(function(){
+  		console.log("bootstrap con jquery!")
+  	})
+  </script>
+  
+</head>
+<body>
+
+
+<div class="container">
+  	<div class="page-header">
+  		<h1>Ejemplo de Encabezado con clase page-header</h1>
+	</div>
+	<p>Contenido fuera del header</p>
+	
+	<p>Ejemplos de clase well (pone un recuadro redondeado de color gris alrededor del texto)</p>
+	<div class="well well-sm">Ejemplo de clase Well chico</div>
+	<div class="well well-lg">Ejemplo de clase Well grande</div>
+	
+	<p class="miClase">Clases de alerts!</p>
+	<div class="alert alert-success">
+	  <strong>Success!</strong> Exito!
+	</div>
+	
+	<div class="alert alert-info">
+	  <strong>Info!</strong> Informacion
+	</div>
+	
+	<div class="alert alert-warning">
+	  <strong>Warning!</strong> Atención
+	</div>
+	
+	<div class="alert alert-danger">
+	  <strong>Danger!</strong> Cuidado! Peligro!
+	</div>
+	
+	<p class="miClase">Clases de alerts con opcion de cerrar</p>
+	<div class="alert alert-success alert-dismissible">
+	  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> <!-- notar que &times; es una palabra clave en html que se traduce en una x -->
+	  <strong>Exito!!</strong> Se ha dado de alta el registro!
+	</div>
+	
+	<p class="miClase">Clases de alerts con opcion de cerrar y efecto al cerrar</p>
+	<div class="alert alert-danger fade in" >
+	  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> <!-- notar que &times; es una palabra clave en html que se traduce en una x -->
+	  <strong>Error!!</strong> Error al dar de alta el registro!
+	</div>
+	
+	<p class="miClase">Clases de botones</p>
+	<button type="button" class="btn">Basico</button>
+	<button type="button" class="btn btn-default">Default</button>
+	<button type="button" class="btn btn-primary">Primario</button>
+	<button type="button" class="btn btn-success">Exito</button>
+	<button type="button" class="btn btn-info">Informacion</button>
+	<button type="button" class="btn btn-warning">Atencion</button>
+	<button type="button" class="btn btn-danger">Cuidado! Peligro!</button>
+	<button type="button" class="btn btn-link">Link</button>
+	
+	<div>&nbsp;</div>
+	
+	<p class="miClase">Tamaños de botones</p>
+	<button type="button" class="btn btn-primary btn-lg">Large</button>
+	<button type="button" class="btn btn-primary btn-md">Medium</button>
+	<button type="button" class="btn btn-primary btn-sm">Small</button>
+	<button type="button" class="btn btn-primary btn-xs">XSmall</button>
+	
+	<div>&nbsp;</div>
+	
+	<p class="miClase">Botones del tamaño del bloque</p>
+	<button type="button" class="btn btn-primary btn-block">Button 1</button>
+	
+	<div>&nbsp;</div>
+	
+	<p class="miClase">Botones deshabilitados</p>
+	<button type="button" class="btn btn-primary disabled">Disabled</button>
+	
+	
+	<div>&nbsp;</div>
+	
+	<p class="miClase">Botones agrupados</p>
+	<div class="btn-group">
+	  <button type="button" class="btn btn-primary">River</button>
+	  <button type="button" class="btn btn-primary">Boca</button>
+	  <button type="button" class="btn btn-primary">San Lorenzo</button>
+	</div>
+	
+	<div>&nbsp;</div>
+	
+	<p class="miClase">Botones agrupados mas grandes (pueden ser .btn-group-lg|sm|xs)</p>
+	<div class="btn-group btn-group-lg">
+	  <button type="button" class="btn btn-primary">River</button>
+	  <button type="button" class="btn btn-primary">Boca</button>
+	  <button type="button" class="btn btn-primary">San Lorenzo</button>
+	</div>
+	
+	<div>&nbsp;</div>
+	
+	<p class="miClase">Botones verticales</p>
+	<div class="btn-group btn-group-vertical">
+	  <button type="button" class="btn btn-primary">Racing</button>
+	  <button type="button" class="btn btn-primary">Atletico de Tucuman</button>
+	  <button type="button" class="btn btn-primary">Lanus</button>
+	</div>
+	
+	<div>&nbsp;</div>
+	
+	<p class="miClase">Botones link que ocupan todo el bloque</p>
+	<div class="btn-group btn-group-justified">
+	   <a href="#" class="btn btn-primary">Racing</a>
+	   <a href="#" class="btn btn-primary">Atletico de Tucuman</a>
+	   <a href="#" class="btn btn-primary">Lanus</a>
+	</div>
+	
+	<div>&nbsp;</div>
+	
+	<p class="miClase">Botones que ocupan todo el bloque</p>
+	<div class="btn-group btn-group-justified">
+	  	<div class="btn-group">
+	    	<button type="button" class="btn btn-primary">Barcelona</button>
+	  	</div>
+  		<div class="btn-group">
+    		<button type="button" class="btn btn-primary">Rosario</button>
+  		</div>
+  		<div class="btn-group">
+    		<button type="button" class="btn btn-primary">Chascomus</button>
+  		</div>
+	</div>
+	
+	<div>&nbsp;</div>
+	
+	<p class="miClase">Botones agrupados y con opciones desplegables</p>
+	<div class="btn-group">
+	  <button type="button" class="btn btn-primary">Apple</button>
+	  <button type="button" class="btn btn-primary">Samsung</button>
+	  <div class="btn-group">
+	    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+	    Sony <span class="caret"></span></button>
+	    <ul class="dropdown-menu" role="menu">
+	      <li><a href="#">Tablet</a></li>
+	      <li><a href="#">Smartphone</a></li>
+	    </ul>
+	  </div>
+	</div>
+	
+	<div>&nbsp;</div>
+	
+	<p class="miClase">Iconos (ver todos en: <a href="https://getbootstrap.com/docs/3.3/components/">Click para ver todos</a>)</p>
+	<p>Buscar: <span class="glyphicon glyphicon-search"></span></p>
+	<p>Buscar en un boton:
+	  <button type="button" class="btn btn-default">
+	    <span class="glyphicon glyphicon-search"></span> Buscar
+	  </button>
+	</p>
+	
+	<div>&nbsp;</div>
+	
+	<p class="miClase">Indicadores numericos</p>
+	
+	<a href="#">Bandeja de Entrada <span class="badge">5</span></a><br>
+	<a href="#">Papelera <span class="badge">10</span></a><br>
+	<a href="#">Correo basura <span class="badge">2</span></a>
+	
+	<div>&nbsp;</div>
+	
+	<p class="miClase">Indicadores numericos en botones</p>
+	<button type="button" class="btn btn-primary"> 
+		Bandeja de Entrada <span class="badge">5</span> 
+	</button>
+	<button type="button" class="btn btn-primary"> 
+		Papelera <span class="badge">10</span> 
+	</button>
+	<button type="button" class="btn btn-primary"> 
+		Correo basura <span class="badge">2</span> 
+	</button>
+	
+	<div>&nbsp;</div>
+	
+	<p class="miClase">Labels</p>
+	<span class="label label-default">Label</span>
+	<span class="label label-primary">Label primario</span>
+	<span class="label label-success">Label Exito</span>
+	<span class="label label-info">Label Informacion</span>
+	<span class="label label-warning">Label Atencion</span>
+	<span class="label label-danger">Label Cuidado/Peligro</span>
+	
+	<div>&nbsp;</div>
+	
+	<p class="miClase">Barra de progreso</p>
+	<div class="progress">
+	  	<div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
+	    	70%
+	  	</div>
+	</div>
+	
+	<div>&nbsp;</div>
+	
+	<p class="miClase">Barra de progreso (.progress-bar-success, .progress-bar-info, .progress-bar-warning, .progress-bar-danger)</p>
+	<div class="progress">
+	  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
+	    40% Completado (exito)
+	  </div>
+	</div>
+	
+	<div>&nbsp;</div>
+	
+	<p class="miClase">Barra de progreso animada</p>
+	<div class="progress">
+		<div class="progress-bar progress-bar-striped active" role="progressbar"  aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
+	    	40%
+	  	</div>
+	</div>
+	
+	
+</div>
+</body>
+</html>
