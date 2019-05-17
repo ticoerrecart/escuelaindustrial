@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Alta/Modificacion de Mascota</title>
+	<link rel="stylesheet" href="../bootstrap/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+  	<script src="../jquery/jquery-3.3.1.js"></script>
+  	<script src="../bootstrap/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+  
+	  <script type="text/javascript">
+	  	$(document).ready(function(){
+	  		console.log("bootsrap con jquery!")
+	  	})
+	  </script>
+	
+</head>
+<body>
+	<div class="container">
+		<div class="jumbotron">
+			<p class="text-center">Alta de Mascota</p>
+		</div>
+
+		<div class="panel panel-default">
+		  <div class="panel-heading">Mascota</div>
+		  <div class="panel-body">
+			<div class="row">
+				<div class="col-md-2">
+					<p>Nombre</p>
+				</div>
+				<div class="col-md-2">
+					<p>Edad</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-2">
+					<input type="text" id="nombreMascota" placeholder="nombre"/>
+				</div>
+				<div class="col-md-2">
+					<input type="text" id="edadMascota" placeholder="edad"/>
+				</div>
+			</div>
+			
+		  
+		  </div>
+		</div>
+		
+		
+		
+		<div class="panel panel-default">
+		  <div class="panel-heading">Dueños</div>
+		  
+		  <div class="panel-body">
+		  	<div class="row">
+				<div class="col-md-2">
+					<p>Nombre</p>
+				</div>
+				<div class="col-md-2">
+					<p>Apellido</p>
+				</div>
+				<div class="col-md-2">
+					<p>Dni</p>
+				</div>
+				<div class="col-md-2">
+					<p>Tel fijo</p>
+				</div>
+				<div class="col-md-2">
+					<p>Tel movil</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-2">
+					<input type="text" name="nombre" placeholder="nombre"/>
+				</div>
+				<div class="col-md-2">
+					<input type="text" name="apellido" placeholder="apellido"/>
+				</div>
+				<div class="col-md-2">
+					<input type="text" name="dni" placeholder="dni"/>
+				</div>
+				<div class="col-md-2">
+					<input type="text" name="telfijo" placeholder="telefono fijo"/>
+				</div>
+				<div class="col-md-2">
+					<input type="text" name="telmovil" placeholder="telefono movil"/>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-md-2">
+					<p>Direccion</p>
+				</div>
+				<div class="col-md-2">
+					<p>E-mail</p>
+				</div>				
+			</div>
+			<div class="row">
+				<div class="col-md-2">
+					<input type="text" name="direccion" placeholder="direccion"/>
+				</div>
+				<div class="col-md-2">
+					<input type="text" name="email" placeholder="email"/>
+				</div>
+			</div>
+			
+			
+		  </div><!-- end panel body -->
+		  
+		  <div class="row">
+				<div class="col-md-12 text-center">
+					<button class="btn btn-primary">Agregar Dueño</button>
+					<button class="btn btn-primary">Borrar Dueño</button>
+				</div>
+		  </div>
+		  
+		</div>
+		
+		
+		<div class="panel panel-default">
+		  <div class="panel-heading">Historia clinica</div>
+		  
+		  <div class="panel-body">
+		  	<div class="row">
+				<div class="col-md-2">
+					<p>Fecha</p>
+				</div>
+				<div class="col-md-2">
+					<input type="text" name="fecha" placeholder="fecha de la Historia"/>
+				</div>
+			</div>
+				
+			<div class="row">	
+				<div class="col-md-2">
+					<p>Descripcion</p>
+				</div>
+				<div class="col-md-10">
+					<textarea name="descripcionHistoria" cols="60" rows="10"></textarea>
+				</div>
+			</div>
+		  </div><!-- end panel body -->
+		  
+		  <div class="row">
+				<div class="col-md-12 text-center">
+					<button class="btn btn-primary">Agregar Historia</button>
+					<button class="btn btn-primary">Borrar Historia</button>
+				</div>
+		  </div>
+		  
+		</div>
+	</div><!-- container -->
+</body>
+</html>
