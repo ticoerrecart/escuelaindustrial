@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Listado de Mascotas</title>
+	<link rel="stylesheet" href="../bootstrap/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+  	<script src="../jquery/jquery-3.3.1.js"></script>
+  	<script src="../bootstrap/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+  
+	  <script type="text/javascript">
+	  	$(document).ready(function(){
+	  		console.log("bootsrap con jquery!")
+	  	
+	  		$("#buscar").click(function(){
+	  			$.getJSON("http://localhost:3000/mascotas").done(function( data ) {
+				  //{"nombre": "Mario","edad":"15", "duenios":[{"nombre":"Juan"},{"nombre":"Gregoria"}]}
+				  console.log(data);
+				  const html = "";
+	  			  $.each( data, function( key, val ) {
+	  			  	html+= `<div class="row">
+					  					<div class="col-md-2">
+										<p>Nombre</p>
+									</div>
+									<div class="col-md-2">
+										<p>Edad</p>
+									</div>
+								</div>`;
+	  			  });
+	  			  
+	  			  $("tabla .row:last").append(html);
+	  			 
+	  			  
+	  			  }).fail(function() {
+	  			    console.log( "error, no está levantado el servidor" );
+	  			  });
+	  		})
+	  		
+	  	});
+	  	
+	  	
+	  	
+	  </script>
+	
+</head>
+<body>
+	<div class="container">
+		<div class="jumbotron">
+			<p class="text-center">Listado de Mascotas</p>
+		</div>
+
+		<div class="panel panel-default">
+		  <div class="panel-heading">
+		  	Mascotas
+		  	<input type="text" name="buscar" id="buscarText" placeholder="ingrese el nombre de la mascota o presione en buscar si quiere listar todas">
+		  	<button type="button" class="btn btn-default" id="buscar">
+				Buscar
+			</button>
+		  </div>
+		  <div class="panel-body" id="tabla">
+			<div class="row">
+				<div class="col-md-2">
+					<p>Nombre</p>
+				</div>
+				<div class="col-md-2">
+					<p>Edad</p>
+				</div>
+			</div>
+			
+			
+		  
+		  </div>
+		</div>
+		
+		
+		
+		
+	</div><!-- container -->
+</body>
+</html>
