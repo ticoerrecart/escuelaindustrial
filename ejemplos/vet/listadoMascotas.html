@@ -11,27 +11,83 @@
 	  	$(document).ready(function(){
 	  		console.log("bootsrap con jquery!")
 	  	
+	  		function renderDuenios(jsonDuenios){
+	  			let html2 = "";
+	  			$.each( jsonDuenios, function( key,val ) {
+					html2+=`<div class="row">
+			  					<div class="col-md-2">
+									<p>${val.nombre}</p> 
+								</div>
+							</div>`;
+	  			});
+	  			return html2;
+	  		}
+
 	  		$("#buscar").click(function(){
-	  			$.getJSON("http://localhost:3000/mascotas").done(function( data ) {
-				  //{"nombre": "Mario","edad":"15", "duenios":[{"nombre":"Juan"},{"nombre":"Gregoria"}]}
-				  console.log(data);
-				  const html = "";
-	  			  $.each( data, function( key, val ) {
+	  			let url = "";
+	  			if($("#buscarText").val()==""){
+	  				url = "http://localhost:3000/mascotas";
+	  			}else{
+	  				url = "http://localhost:3000/mascotasBuscar/" + $("#buscarText").val(); 
+	  			}
+	  			
+	  			
+	  			$.getJSON(url).done(function( data ) {
+	  			  $("#tabla").html("");
+				  let html = "";
+	  			  $.each( data, function( key,val ) {
+					console.log(key + ", " + val);
+	  				
+	  				//mascota ------------------------
 	  			  	html+= `<div class="row">
+				  				<div class="col-md-2">
+									<p><b>Nombre</b></p>
+								</div>
+								<div class="col-md-2">
+									<p><b>Edad</b></p>
+								</div>
+							</div>
+	  			  			<div class="row">
 					  					<div class="col-md-2">
-										<p>Nombre</p>
+										<p>${val.nombre}</p>
 									</div>
 									<div class="col-md-2">
-										<p>Edad</p>
+										<p>${val.edad}</p>
 									</div>
-								</div>`;
-	  			  });
+							</div>`;
 	  			  
-	  			  $("tabla .row:last").append(html);
+	  			  
+					//dueños ------------------------
+					html+=`<div class="row">
+		  						<div class="col-md-2">
+									<p><b>Dueños</b></p>
+								</div>
+						   </div>`;
+						   
+					$.each(val.duenios, function(key,val2){
+						html+=`<div class="row">
+								   	<div class="col-md-2">
+										<p>${val2.nombre}</p> 
+									</div>
+								</div>` 
+					});
+					
+					//agrego un divisor
+	  				html+=`<div class="row">
+							<div class="col-md-2">
+								<hr>
+							</div>
+					   </div>`;
+
+	  			  });//end each data
+	  			  
+	  			
+				  //$("#tabla .row:last").append(html);
+				  $("#tabla").append(html);
 	  			 
 	  			  
 	  			  }).fail(function() {
-	  			    console.log( "error, no está levantado el servidor" );
+	  			    console.log( "Error, no está levantado el servidor" );
 	  			  });
 	  		})
 	  		
@@ -57,16 +113,6 @@
 			</button>
 		  </div>
 		  <div class="panel-body" id="tabla">
-			<div class="row">
-				<div class="col-md-2">
-					<p>Nombre</p>
-				</div>
-				<div class="col-md-2">
-					<p>Edad</p>
-				</div>
-			</div>
-			
-			
 		  
 		  </div>
 		</div>
