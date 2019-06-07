@@ -17,8 +17,49 @@
 	  			mascota.nombre= $("#nombreMascota").val();
 	  			mascota.edad = $("#edadMascota").val();
 	  			
+	  			var dueniosArr = new Array();
+	  			var due = {};
+	  			$(".duenios input").each(function(indx,elem){	  					
+	  					var attrName=$(elem).attr("name");
+	  					//console.log(indx)
+	  					//console.log(attrName);
+	  					switch(attrName){
+	  						case "nombre":
+	  							due.nombre = $(elem).val();
+	  							break;
+	  						case "apellido":
+	  							due.apellido = $(elem).val();
+	  							break;
+	  						case "dni":
+	  							due.dni = $(elem).val();
+	  							break;
+	  						case "telfijo":
+	  							due.telfijo = $(elem).val();
+	  							break;
+	  						case "telmovil":
+	  							due.telmovil = $(elem).val();
+	  							break;
+	  						case "direccion":
+	  							due.direccion = $(elem).val();
+	  							break;
+	  						case "email":
+	  							due.email = $(elem).val();
+	  							break;
+	  						
+	  					}
+	  					 	
+	  					if(Object.keys(due).length == 7){//para armar cada objeto, espero 7 elementos
+		  					//alert(JSON.stringify(due))
+		  					dueniosArr.push(due);
+		  					due = {};
+	  					}
+	  			});
+	  			
+	  			//console.log(dueniosArr);
+	  			mascota.duenios = dueniosArr;
 	  			alert(JSON.stringify(mascota));
-	  			 $.ajax({
+
+	  			$.ajax({
 	  	            type : "POST",
 	  	            url : url,
 	  	            contentType : "application/json",
@@ -26,7 +67,8 @@
 	  	            dataType : 'json'}
 	  			).done(
 	  					function(data){
-	  						console.log("ok");
+	  						console.log(data);
+	  						$("#successGrabar").html(data.mensaje);
 	  			}).fail(function() {
 	  			    console.log( "Error al guardar la mascota, no está levantado el servidor" );
 	  			});
@@ -89,7 +131,7 @@
 						<p>Tel movil</p>
 					</div>
 				</div>
-				<div class="row">
+				<div class="row duenios">
 					<div class="col-md-2">
 						<input type="text" name="nombre" placeholder="nombre"/>
 					</div>
@@ -107,7 +149,7 @@
 					</div>
 				</div>
 				
-				<div class="row">
+				<div class="row duenios">
 					<div class="col-md-2">
 						<p>Direccion</p>
 					</div>
@@ -115,7 +157,7 @@
 						<p>E-mail</p>
 					</div>				
 				</div>
-				<div class="row">
+				<div class="row duenios">
 					<div class="col-md-2">
 						<input type="text" name="direccion" placeholder="direccion"/>
 					</div>
@@ -174,6 +216,11 @@
 						<br>
 					</div>
 			</div>
+			<div class="row">
+					<div class="col-md-12 text-center">
+						<div class="alert alert-success" id="successGrabar"></div>
+					</div>
+			  </div>
 			 <div class="row">
 					<div class="col-md-12 text-center">
 						<button class="btn btn-primary" id="agregarMascota">Guardar</button>

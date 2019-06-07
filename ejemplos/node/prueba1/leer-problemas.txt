@@ -1,0 +1,2 @@
+si da error (ERR! Error: CERT_UNTRUSTED)
+>npm config set strict-ssl false
