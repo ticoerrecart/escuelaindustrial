@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>test selectores</title>
+  <style>
+  
+  button {
+    font-size: 14px;
+  }
+  </style>
+  <script src="jquery-3.3.1.js"></script>
+  
+  <script>
+	$( document ).ready(function() {
+		console.log(`texto de mas de
+				una fila`);
+		var color = "rojo";
+		var texto1= `en este texto reemplazamos por una variable con color: ${color}`;
+		console.log(texto1);
+		
+		//ver en este ejemplo como primero se resuelve lo que esta dentro de la 
+		//comilla especial con ${valor} y despues concatena todo
+		var animales = ["perro","gato"];
+		var texto2 = "La lista de animales tiene :";
+		$(animales).each(function(ind,elem){
+			texto2+=` animal nro ${ind+1}-> ${elem}`;
+		});
+		
+		console.log(texto2);
+		
+		//ver ejemplo con html haciendo append()
+	});
+  </script>
+
+</head>
+<body>
+ 
+</body>
+</html>
