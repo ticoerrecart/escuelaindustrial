@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>test tablas</title>
+  <style>
+  
+  button {
+    font-size: 14px;
+  }
+  </style>
+  <script src="jquery-3.3.1.js"></script>
+  
+  <script>
+  console.clear();
+  
+  //arreglos, for, while
+  var equipos = ["Los pica", "Atlético", "Deportivo"];
+  console.log("Hay " + equipos.length + " equipos");
+  for(var i=0;i<equipos.length;i++){
+	  console.log(i + "-" + equipos[i]);
+  }
+  
+  console.log("");
+  var colores = new Array();
+  colores.push("Blanco");
+  colores.push("Celeste");
+  colores.push("Amarillo");
+  colores.push("Negro");
+  console.log("Hay " + colores.length + " colores");
+  
+  //este arreglo lo itero con jquery!
+  $(colores).each(function(ind){
+	 console.log(ind + "-" + colores[ind]); 
+  });
+  
+  console.log("");
+  console.log("muestro una posicion particular del array de colores (el indice 2): " + colores[2])
+  
+  
+  console.log("");
+  //while
+  console.log("muestro los 2 primeros elementos del array de colores usando un while");
+  var cant = 0;
+  while(cant<2){
+	  console.log(colores[cant]);
+	  cant++;
+  }
+  console.log("objetos perros");
+  var miPerro1 = {nombre:"perro1", edad:"3"};
+  var miPerro2 = {nombre:"perro2", edad:"1"};
+  var perros = new Array();
+  perros.push(miPerro1);
+  perros.push(miPerro2);
+  for(var i=0;i<perros.length;i++){
+	  var p = perros[i];
+	  console.log(p.nombre);
+	  console.log(p.edad);
+  }
+  
+  
+  </script>
+
+</head>
+<body>
+
+
+</body>
+</html>

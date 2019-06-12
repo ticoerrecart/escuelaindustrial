@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Listado de clientes</title>
+   <script src="jquery-3.1.1.js"></script>	
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
+     <style>
+  
+  button {
+    font-size: 14px;
+  }
+  </style>
+  <script>
+  	 
+	$( document ).ready(function() {
+		
+		$("#btnBuscar").click(function(){
+			$("#tabla1")
+		});
+	});
+	</script>
+</head>
+<body>
+	
+		<h2 align="center">Clientes</h2>
+		<table style="border-color:purple" border="3" id="tabla1">
+			<thead>
+			<tr>
+				<td>Nombre</td>
+				<td>Apellido</td>
+				<td>DNI</td>
+				<td>Nro de celular</td>
+				<td>Nro de tel fijo</td>
+				<td>Dirección</td>
+				<td>E-mail</td>
+			</tr>
+			</thead>
+			<tbody>
+				<tr>
+ 			<td><input type="text" class="input" id="Nombre" value="Jorge"></td>
+ 			<td><input type="text" class="input" id="Apellido" value="Nitales"></td>
+ 			<td><input type="text" class="input" id="DNI" value="42945564"></td>
+ 			<td><input type="text" class="input" id="Nro de celular" value="2241-377367"></td>
+ 			<td><input type="text" class="input" id="Nro de tel fijo" value="431320"></td>
+ 			<td><input type="text" class="input" id="Direccion" value="callefalsa123"></td>
+ 			<td><input type="text" class="input" id="E-mail" value="peppalacerda@yahoo.com"></td>
+ 		       </tr>
+ 		       <tr>
+ 			<td><input type="text" class="input" id="Nombre" value="Estefi"></td>
+ 			<td><input type="text" class="input" id="Apellido" value="Errote"></td>
+ 			<td><input type="text" class="input" id="DNI" value="43399206"></td>
+ 			<td><input type="text" class="input" id="Nro de celular" value="2241-533777"></td>
+ 			<td><input type="text" class="input" id="Nro de tel fijo" value="436886"></td>
+ 			<td><input type="text" class="input" id="Direccion" value="Callereal123"></td>
+ 			<td><input type="text" class="input" id="E-mail" value="Gold_miaw@yahoo.com"></td>
+ 		       </tr>
+			</tbody>
+		</table>
+		<table align="center">
+ 		<tr>
+ 			<td><input type="button" id="btnBuscar" value="Buscar"/></td>
+
+ 		</tr>
+ 	</table>
+ 
+</body>
+</html>

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+ 	<link href="bootstrap.min.css" rel="stylesheet" >
+ 	<script src="jquery-3.3.1.min.js"></script>
+ 	<script src="bootstrap.min.js"></script>
+ 	<script type="text/javascript">
+  	$(document).ready(function(){
+  		console.log("bootstrap con jquery!")
+  	})
+  </script>
+ 	<title>Cachorros-Registro</title>
+
+ </head>
+ <body background="https://static.vecteezy.com/system/resources/previews/000/278/162/large_2x/vector-pastel-background.jpg">
+ 	<div class="container-fluid">
+
+ 	<h1><center>Registro de mascotas</center></h1>
+	<form method="post" action="add_reg.php3">
+	<h4><center>Nombre :<input type="Text" name="nombre"><br></center></h4>
+	<h4><center>Edad:<input type="Text" name="Edad"><br></center></h4>
+	<h4><center>vacunas:<input type="Text" name="vacunas"><br></center></h4>
+	<h4><center>Historial medico :<input type="Text" name="Historial medico"><br></center><h4>
+	<h4><form name="formulario" method="post" action="file:///F:/usuarios/alumno/Documentos/PROGRAMACION%202019/trabajo%20practico1-2.html?nombre=&Edad=&vacunas=&Historial+medico=&enviar=Aceptar+informacion"></h4>
+	  <!-- Botones de opción -->
+	  <h4><center>Sexo: <input type="radio" name="sexo" value="M"> Macho
+	        <input type="radio" name="sexo" value="H"> Hembra</center></h4>
+	  <!-- Casillas de verificación (marcada por defecto) -->
+	  <!-- Botones de opción -->
+	  <h4><center>Especie: <input type="radio" name="especie" value="p"> perro
+	        <input type="radio" name="especie" value="g"> gato
+	        <input type="radio" name="especie" value="o"> otros</center></h4>
+	  <!-- Casillas de verificación (marcada por defecto) -->
+	  <h4><center>Vacunas: <input type="radio" name="vacunas" value="S"> Sí
+	        <input type="radio" name="vacunas" value="N"> No</center></h4>
+</form>
+<center>
+	<button type="button" class="btn btn-warning">Registrar</button>
+</center>
+	
+		<div class="row">
+ 	<h1><center>Registro de dueños</center></h1>
+		</div>
+		<form method="post" action="add_reg.php3">
+		<h4><center>Nombre :<input type="Text" name="nombre"><br></center></h4>
+		<h4><center>Apellido :<input type="Text" name="nombre"><br></center></h4>
+		<h4><center>DNI :<input type="Text" name="nombre"><br></center></h4>
+		<h4><center>Teléfono Fijo :<input type="Text" name="nombre"><br></center></h4>
+		<h4><center>Teléfono Móvil :<input type="Text" name="nombre"><br></center></h4>
+		<h4><center>Dirección :<input type="Text" name="nombre"><br></center></h4>
+		<h4><center>E-mail :<input type="Text" name="nombre"><br></center></h4>
+		</form>
+		<center>
+			<button type="button" class="btn btn-warning">Agregar</button>
+			<button type="button" class="btn btn-warning">Borrar</button>
+			<button type="button" class="btn btn-warning">Registrar</button>
+
+		</center>
+	</div>
+</form>
+<h2><center>Listado de clientes</h2>
+  <table class="table table-hover">
+	  	<tr style="font-weight: bold">
+	  		<td>
+	  			Nombre
+	  		</td>
+	  		<td>
+	  			Apellido
+	  		</td>
+	  		<td>
+	  			DNI
+	  		</td>
+	  		<td>
+	  			Teléfono Fijo
+	  		</td>
+	  		<td>
+	  			Teléfono Móvil
+	  		</td>
+	  		<td>
+	  			Dirección
+	  		</td>
+	  		<td>
+	  			E-mail
+	  		</td>
+	  	</tr>
+  	<tr>
+  		<td>
+  			Fiona
+  		</td>
+  		<td>
+  			Magnoleti
+  		</td>
+  		<td>
+  			892738273
+  		</td>
+  		<td>
+  			736472364
+  		</td>
+  		<td>
+  			54922415763936
+  		</td>
+  		<td>
+  			Dirección Falsa 123
+  		</td>
+  		<td>
+  			fionalapiola@gmail.com
+  		</td>
+  	</tr>
+  	<tr>
+  		<td>
+  			Chanel
+  		</td>
+  		<td>
+  			Palomuti
+  		</td>
+  		<td>
+  			3846921369
+  	 	</td>
+  	 	<td>
+  	 		387423874
+  	 	</td>
+  	 	<td>
+  	 		54922415476
+  	 	</td>
+  	 	<td>
+  	 		Dirección Más Falsa 456
+  	 	</td>
+  	 	<td>
+  	 		chanelcomolamarca@gmail.com
+  	 	</td>
+  	<tr>
+  		<td>
+  			Cosme
+  		</td>
+  		<td>
+  			Fulanito
+  		</td>
+  		<td>
+  			216323798
+  		</td>
+  		<td>
+  			32468273
+  		</td>
+  		<td>
+  			5492241487354
+  		</td>
+  		<td>
+  			Dirección Más Falsa Aún 789
+  		</td>
+  		<td>
+  			yosoycosmefulanito@gmail.com
+  		</td>
+  	</tr>
+  </table>
+  <h2><center>Listado de Mascotas</h2>
+  <table class="table table-hover">
+	  	<tr style="font-weight: bold">
+	  		<td>
+	  			Nombre
+	  		</td>
+	  		<td>
+	  			Edad
+	  		</td>
+	  		<td>
+	  			Vacunas
+	  		</td>
+	  		<td>
+	  			Historial Médico
+	  		</td>
+	  		<td>
+	  			Sexo
+	  		</td>
+	  		<td>
+	  			Especie
+	  		</td>
+	  	</tr>
+	  	<tr>
+	  		<td>
+	  		Mapuche
+	  		</td>
+	  		<td>
+	  			4 años
+	  		</td>
+	  		<td>
+	  			Sí
+	  		</td>
+	  		<td>
+	  			Proceso de castración y vacuna anti sarna
+	  		</td>
+	  		<td>
+	  			Macho
+	  		</td>
+	  		<td>
+	  			Perro
+	  		</td>
+	  	</tr>
+	  	<tr>
+	  		<td>
+	  			Cori
+	  		</td>
+	  		<td>
+	  			10 años
+	  		</td>
+	  		<td>
+	  			No
+	  		</td>
+	  		<td>
+	  			Malformación de nacimiento
+	  		</td>
+	  		<td>
+	  			Hembra
+	  		</td>
+	  		<td>
+	  			Gallina
+	  		</td>
+	  	</tr>
+	  	<tr>
+	  		<td>
+	  			Aslan
+	  		</td>
+	  		<td>
+	  			6 años
+	  		</td>
+	  		<td>
+	  			No
+	  		</td>
+	  		<td>
+	  			Patita rota
+	  		</td>
+	  		<td>
+	  			Macho
+	  		</td>
+	  		<td>
+	  			Gato
+	  		</td>
+	  	</tr>
+	  	<tr>
+	  		<td>
+	  			Bolita de Algodón
+	  		</td>
+	  		<td>
+	  			1 año
+	  		</td>
+	  		<td>
+	  			Si
+	  		</td>
+	  		<td>
+	  			Vacuna antirrábica
+	  		</td>
+	  		<td>
+	  			Hembra
+	  		</td>
+	  		<td>
+	  			Hamster
+	  		</td>
+	  	</tr>
+	  </center>
+	  </table>
+	   	<h1><center>Tienda online</center></h1>
+	  	<div class="row">
+		<div class="col-md-4">
+			<img style="float:left;" src="https://i.ebayimg.com/images/g/jiAAAOSw34Jb1y-y/s-l300.jpg" class="img-thumbnai" width="200px" />
+			<center><input type="Text" name="Cantidad" size="12"><button type="button" class="btn btn-warning">comprar $120</button></div></center>
+		<div class="col-md-4">
+			<img style="float:left;" src="https://i0.wp.com/ae01.alicdn.com/kf/HTB1TYa5SFXXXXXuXXXXq6xXFXXXU/-COOBY-mascotas-productos-para-cachorros-de-cama-para-mascotas-para-los-animales-perro-camas-para.jpg_350x350.jpg" class="img-thumbnai" width="200px" />
+			<center><input type="Text" name="Cantidad" size="12"><button type="button" class="btn btn-warning">comprar $160</button></div></center>
+		</div>
+		<div class="col-md-4">
+			<img style="float:left;" src="https://images-na.ssl-images-amazon.com/images/I/41zlrTBYdaL.jpg" class="img-thumbnai" width="200px" />
+			<center><input type="Text" name="Cantidad" size="12"><button type="button" class="btn btn-warning">comprar $200</button></div></center>
+			<div class="row">
+			<br>
+		<div class="col-md-4">
+			<img style="float:left;" src="https://homecenterco.scene7.com/is/image/SodimacCO/231208?$producto310$" class="img-thumbnai" width="200px" />
+			<center><input type="Text" name="Cantidad" size="12"><button type="button" class="btn btn-warning">comprar $1850</button></div></center>
+		<div class="col-md-4">
+			<img style="float:left;" src="https://http2.mlstatic.com/S_800109-MLM27933020927_082018-O.jpgg" class="img-thumbnai"
+			width="200px" />
+			<left><input type="Text" name="Cantidad" size="12"><button type="button" class="btn btn-warning">comprar $400</button></div></left>
+		<div class="col-md-4">
+			<img style="float:left;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTh3RtVe7Ce0PV2mRgX5HA4RgR8o1zGJdFVlHlX-0jQCzBlHZJL" class="img-thumbnai" width="200px" />
+			<input type="Text" name="Cantidad" size="12"><button type="button" class="btn btn-warning">comprar $230</button></div></div>
+		</div>
+	</div>
+</div>
+	</body>
+</html>

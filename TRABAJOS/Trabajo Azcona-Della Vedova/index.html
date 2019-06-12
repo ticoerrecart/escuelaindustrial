@@ -1,0 +1,187 @@
+<!DOCTYPE html> <!-- definimos el doctype -->
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Veterinaria</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maxium-scale=1.0, minimum-scale=1.0">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="estilo.css">
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+      <script type="text/javascript">
+  	$(document).ready(function(){
+  		console.log("bootstrap con jquery!")
+  	    
+    $("#btnAgregar").click(function(){
+      var seccion = $("#cn1").clone();
+      $(seccion).find("input textarea").val("");
+      $(seccion).attr("id","");
+      $(seccion).attr("class","borrar");
+      $("#sdueños").append(seccion);
+});
+
+    
+$("#btnBorrar").click(function(){
+    	console.log("dsaf");
+    	var cant = $("#sdueños >section").length;
+    	console.log(cant);
+
+      if(cant>1){
+        $("#sdueños .borrar:last").remove();
+      }else{
+        alert("No hay mas elementos para borrar.");
+      }
+    });
+
+$("#btnAgregar2").click(function(){
+      var seccion2 = $("#cn2").clone();
+      $(seccion2).find("input textarea").val("");
+      $(seccion2).attr("id","");
+      $(seccion2).attr("class","borrar2");
+      $("#sclin").append(seccion2);
+	});    
+
+$("#btnBorrar2").click(function(){
+    	console.log("dsaf");
+    	var cant = $("#sclin >section").length;
+    	console.log(cant);
+
+      if(cant>1){
+        $("#sclin .borrar2:last").remove();
+      }else{
+        alert("No hay mas elementos para borrar.");
+      }
+    });
+    
+
+    });
+
+        
+  </script>	
+</head>
+
+<body>
+	<center><h1>Veterinaria re loca</h1></center>
+	<br>
+    <div class="container">
+    <section class="row"><div class="col-md-13"><h2>Mascota</h2></div></section>
+    <center><section class="row" id="section1">
+			<div class="col-md-6">
+		   <p>Nombre</p>
+		   <input type="text" size="21" maxlength="20">
+	    </div>
+	    <div class="col-md-6">
+	    	<p>Edad</p>
+	    	<input type="text" size="10" maxlength="2">
+	    </div>
+	    -
+	</section></center>
+	<br>
+
+    <section class="row" id="sdueños">
+    	<div class="col-md-12"><h3>Dueños</h3>
+    	</div>
+
+    	<section id="cn1">
+			<center>
+			<section class="row">
+				<div class="col-md-4">
+					<p>Nombre</p>
+					<input type="text" size="25" maxlength="20">
+				</div>
+				<div class="col-md-4">
+					<p>Apellido</p>
+					<input type="text" size="25" maxlength="20">
+				</div>
+				<div class="col-md-4">
+					<p>DNI</p>
+					<input type="text" size="25" maxlength="11">
+				</div>
+			</section>
+			</center>
+			<center>
+			<section class="row">
+				<div class="col-md-4">
+					<p>Tel.Fijo</p>
+					<input type="text" size="25" maxlength="10">
+				</div>
+				<div class="col-md-4">
+					<p>Tel.Movil</p>
+					<input type="text" size="25" maxlength="18">
+				</div>
+				<div class="col-md-4">
+					<p>Direccion</p>
+					<input type="text" size="25" maxlength="20">
+				</div>
+			</section>
+			</center>
+	
+			<center>
+			<section class="row">
+				<div class="col-md-12"><p>Email</p>
+				    <input type="text" size="50" maxlength="35">
+				    <br>
+				</div>
+			</section>
+			</center>
+			<br>
+    	</section>
+
+    </section>
+	    
+
+	<section class="row">
+	<div class="col-md-6">
+			<button class="btn btn-lg btn-block btn-primary active" id="btnAgregar">Agregar</button>
+		</div>
+		<div class="col-md-6">
+			<button id="btnBorrar" class="btn btn-lg btn-block btn-primary active" >Borrar</button>
+	</div>
+	</section>
+	<br>
+
+	<section class="row" id="sclin">
+		<div class="col-md-14"><h4>Mascota clinica</h4></div>
+
+		<section id="cn2">
+		<section class="row"><div class="col-md-12"><p>Fecha</p></div></section>
+		<section class="row"><div class="col-md-12"><input type="date" size="10" maxlength="50"></div></section>
+		<section class="row"><div class="col-md-12"><p>Descripcion</p></div></section>
+		<section class="row"><div class="col-md-12"><textarea rows="5" cols="70"> </textarea></div></section>
+		</section>
+
+
+
+<!--fin de clinica -->
+
+
+		</section>
+			<section class="row">
+			<div class="col-md-6" id="btnAgregar2">
+					<button class="btn btn-lg btn-block btn-primary active">Agregar</button>
+				</div>
+				<div class="col-md-6" id="btnBorrar2">
+					<button class="btn btn-lg btn-block btn-primary active">Borrar</button>
+			</div>
+			</section>
+			
+			<section>
+			<div class="col-md-4">
+				<a class="btn btn-lg btn-block btn-success active" role="button" href="vntas.html">Ventas</a>
+			</div>
+			<div class="col-md-4">
+				<a class="btn btn-lg btn-block btn-success active" role="button" href="client.html">Lista de clientes</a>
+			</div>
+			<div class="col-md-4">
+				<a class="btn btn-lg btn-block btn-success active" role="button" href="perritos.html">Lista de mascotas</a>
+			</div>
+			
+			</section>
+
+    <!--col-md-offset-4 se utiliza para desplazar columnas (el numero final es la cantidad de columnas que quiero desplazar)-->
+    </div>
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+</html>

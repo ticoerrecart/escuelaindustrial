@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Veterinaria el gato de Gold</title>
+   <script src="jquery-3.1.1.js"></script>	
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
+
+  <style>
+  
+  button {
+    font-size: 14px;
+  }
+  </style>
+  <script>
+  	 
+	$( document ).ready(function() {
+		
+		$("#btnAgregar").click(function(){
+			var nuevoTr = $("#tabla1 tr:last").clone();
+			nuevoTr.find("input").val("");
+			$("#tabla1").append(nuevoTr);
+		});
+		
+		$("#btnBorrar").click(function(){
+			if($("#tabla1 tr").length>2){
+				$("#tabla1 tr:last").remove();
+			}else{
+				alert("No hay mas elementos para borrar.");
+			}
+		});
+	});
+  </script>
+   <style>
+   button {
+    font-size: 14px;
+  }
+  </style>
+  <script>
+  	 
+	$( document ).ready(function() {
+		
+		$("#btnAgregar1").click(function(){
+			var nuevoTr = $("#tabla2 tr:last").clone();
+			nuevoTr.find("input").val("");
+			$("#tabla2").append(nuevoTr);
+		});
+		
+		$("#btnBorrar1").click(function(){
+			if($("#tabla2 tr").length>2){
+				$("#tabla2 tr:last").remove();
+			}else{
+				alert("No hay mas elementos para borrar.");
+			}
+		});
+	});
+  </script>
+   <style>
+   button {
+    font-size: 14px;
+  }
+  </style>
+  <script>
+  	 
+	$( document ).ready(function() {
+		
+		$("#btnAgregar2").click(function(){
+			var nuevoTr = $("#tabla3 tr:last").clone();
+			nuevoTr.find("input").val("");
+			$("#tabla3").append(nuevoTr);
+		});
+		
+		$("#btnBorrar2").click(function(){
+			if($("#tabla3 tr").length>2){
+				$("#tabla3 tr:last").remove();
+			}else{
+				alert("No hay mas elementos para borrar.");
+			}
+		});
+	});
+  </script>
+</head>
+<body>
+<body background="fondo3.jpg"> 
+	<h1 align="center" style="color:purple">Veterinaria</h1>
+ <h3 align="center"> Mascota </h3>
+ 	<table align="center" border="3" style="border-color:blue">
+       <tr><td>
+        <table>
+          <tr>
+            <td align="right">Nombre:</td><td><input type="text" name="Nombre" size="25"></td>
+          </tr>
+          <tr>
+            <td align="right">Edad:</td><td><input type="text" name="Edad" size="4" maxlength="10" ></td>
+         
+         	</table>       
+        </table>
+      </td></tr>
+    </table>
+ <h3 align="center"> Dueño/s </h3>
+ 	<table border="3" align="center" style="border-color:purple," id="tabla1">
+
+ 	<thead>
+ 		<tr>
+ 			<td>Nombre</td>
+ 			<td>Apellido</td>
+ 			<td>DNI</td>
+ 			<td>Nro de celular</td>
+ 			<td>N de tel. fijo</td>
+ 			<td>Direccion</td>
+ 			<td>E-mail</td>
+ 		</tr>
+ 	</thead>
+ 	<tbody>
+ 		<tr id="">
+ 			<td><input type="text" class="input" id="Nombre" value=" "></td>
+ 			<td><input type="text" class="input" id="Apellido" value=""></td>
+ 			<td><input type="text" class="input" id="DNI" value=""></td>
+ 			<td><input type="text" class="input" id="Nro de celular" value=""></td>
+ 			<td><input type="text" class="input" id="Nro de tel. fijo" value=""></td>
+ 			<td><input type="text" class="input" id="Direccion" value=""></td>
+ 			<td><input type="text" class="input" id="E-mail" value=""></td>
+ 		</tr>
+ 	</tbody>
+ </table>
+ 	<table align="center">
+ 		<tr>
+ 			<td><input type="button" id="btnAgregar" value="Agregar"/></td>
+ 			<td><input type="button" id="btnBorrar" value="Borrar"/></td>
+
+ 		</tr>
+ 	</table>
+ 
+	</table>	
+	<h3 align="center">Vacunas</h3>
+	<table border="3" align="center" id="tabla2" style="border-color:pink">
+	<thead>
+		<tr>
+			<td align="center">Descripcion</td>
+			<td align="center">Fecha</td>
+		</tr>
+		
+	</thead>
+	<tbody>
+		<td><input type="text" class="input" name="descripcion" id="descripcion" size="30" value=""></td>
+		<td><input type="text" class="input" id="fecha" size="30" value=""name="fecha"></td>
+	</tbody>
+	</table>	
+	<table align="center">
+ 		<tr>
+ 			<td><input type="button" id="btnAgregar1" value="Agregar"/></td>
+ 			<td><input type="button" id="btnBorrar1" value="Borrar"/></td>
+
+ 		</tr>
+ 	 
+	</table>
+	<h3 align="center">Historia clinica</h3>
+	<table border="3" align="center" id="tabla3" style="border-color:green">
+	<thead>
+		<tr>
+			<td align="center">Descripcion</td>
+			<td align="center">Fecha de alta</td>
+		</tr>
+	</thead>
+	<tbody>
+		<td><input type="text" class="input" name="descripcion" id="descripcion" size="30" value=""></td>
+		<td><input type="text" class="input" id="fecha" size="30" value=""name="fecha"></td>
+	</tbody>
+</table>
+<table align="center">
+ 		<tr>
+ 			<td><input type="button" id="btnAgregar2" value="Agregar"/></td>
+ 			<td><input type="button" id="btnBorrar2" value="Borrar"/></td>
+
+ 		</tr>
+ </table>
+
+<script src="js/bootstrap.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Trabajo 17/5</title>
+	<meta charset="utf-8">
+	<script src="jquery-3.3.1.min.js"></script>
+	<link rel="stylesheet" href="bootstrap.min.css">
+	<script src="bootstrap.min.js"></script>
+	<script>
+		
+		$(document).ready(function(){
+			$( "#block" ).animate({
+    		opacity: 0.8,
+    		marginLeft: "0.6in",
+    		fontSize: "3em",
+    		borderWidth: "10px"
+  			}, 1500 );
+  			$("#btnAgregar0").click(function(){
+				var nuevoTr = $("#tabla0 tr:last").clone();
+				nuevoTr.find("input").val("");
+				$("#tabla0").append(nuevoTr);
+			});
+			
+			$("#btnBorrar0").click(function(){
+				if($("#tabla0 tr").length>1){
+					$("#tabla0 tr:last").remove();
+				}else{
+					alert("No hay mas elementos para borrar.");
+				}
+			});
+  			$("#btnAgregar1").click(function(){
+				var nuevoTr = $("#tabla1 tr:last").clone();
+				nuevoTr.find("input").val("");
+				$("#tabla1").append(nuevoTr);
+			});
+			
+			$("#btnBorrar1").click(function(){
+				if($("#tabla1 tr").length>2){
+					$("#tabla1 tr:last").remove();
+				}else{
+					alert("No hay mas elementos para borrar.");
+				}
+			});
+			$("#btnAgregar2").click(function(){
+				var nuevoTr = $("#tabla1 tr:last").clone();
+				nuevoTr.find("input").val("");
+				$("#tabla2").append(nuevoTr);
+			});
+			
+			$("#btnBorrar2").click(function(){
+				if($("#tabla2 tr").length>2){
+					$("#tabla2 tr:last").remove();
+				}else{
+					alert("No hay mas elementos para borrar.");
+				}
+			});
+			$("#btnAgregar3").click(function(){
+				var nuevoTr = $("#clon").clone();
+				nuevoTr.find("input").val("");
+				nuevoTr.attr("id","");
+				$("#div2").append(nuevoTr);
+			});
+			
+			$("#btnBorrar3").click(function(){
+				var cant = $("#div2 > div").length;
+				if(cant>2){
+					$("#div2 .row:last").remove();
+				}else{
+					alert("No hay mas elementos para borrar.");
+				}
+			});
+			$( "#boton" ).click(function() {
+  				$("#div1").toggle("fast");
+  				$("#div2").hide("fast");
+  				$("#div3").hide("fast");
+  				$("#div4").hide("fast");
+  			});
+  			$( "#boton2" ).click(function() {
+  				$("#div2").toggle("fast");
+  				$("#div1").hide("fast");
+  				$("#div3").hide("fast");
+  				$("#div4").hide("fast");
+  			});
+  			$( "#boton3" ).click(function() {
+  				$("#div3").toggle("fast");
+  				$("#div1").hide("fast");
+  				$("#div2").hide("fast");
+  				$("#div4").hide("fast");
+  			});
+  			$( "#boton4" ).click(function() {
+  				$("#div4").toggle("fast");
+  				$("#div1").hide("fast");
+  				$("#div2").hide("fast");
+  				$("#div3").hide("fast");
+  			});
+		});
+	</script>
+</head>
+<body style="background-color: #999999;">
+	<div class="container">
+		<div align="center" id="block">Veterinaria Cachorros</div><br>
+		<div class="row">
+			<div align="center" class="col-xs-12">
+				<button id="boton" class="btn btn-primary">Alta mascota</button>
+				<button id="boton2" class="btn btn-primary">Venta Productos</button>
+				<button id="boton3" class="btn btn-primary">Lista Clientes</button>
+				<button id="boton4" class="btn btn-primary">Lista mascota</button>
+			</div>
+		</div><br>
+		<div id="div1" style="display: none;">
+			<div  class="row">
+				<table class="table-bordered">
+					<thead><div class="col-xs-12">Mascota</div></thead>
+					<div class="col-xs-12"> 
+					<tr>
+						<td><input type="text" placeholder="Nombre"></td>
+						<td><input type="text" placeholder="Edad"></td>
+					</tr>
+				</div>
+				<br>
+				<table class="table-bordered" id="tabla0">
+					<thead><div class="col-xs-12">Dueños</div></thead>
+						<div class="col-xs-12">
+						<tr id="">	
+							<td><input type="text" placeholder="Nombre"></td>
+							<td><input type="text" placeholder="Apellido"></td>
+							<td><input type="text" placeholder="DNI"></td>
+							<td><input type="text" placeholder="Tel. Fijo"></td>
+							<td><input type="text" placeholder="Tel. Movil"></td>	
+							<td><input type="text" placeholder="Direccion"></td>
+							<td><input type="text" placeholder="Email"></td>
+						</tr>
+						</div>
+				</table>
+			</div><br>
+			<button class="btn btn-primary" id="btnAgregar0">Agregar</button><button class="btn btn-primary" id="btnBorrar0">Borrar</button><br><br>
+			<div class="row">
+			<table id="tabla1" class="table-bordered">
+				<tr>
+					<thead><div class="col-xs-12"> Historia Clinica</div></thead>
+					<td><div class="col-xs-12"> Fecha <input type="text" placeholder="Fecha"></div></td>
+					<td><div class="col-xs-12"> Descripción <textarea></textarea></td>
+				</tr>
+			</table>
+			</div>
+				<button id="btnAgregar1" class="btn btn-primary">Agregar</button>
+				<button id="btnBorrar1"class="btn btn-primary">Borrar</button><br><br>
+			<hr>
+			<div class="row">
+			<table id="tabla2" class="table-bordered">
+				<tr id="">
+					<thead><div class="col-xs-12"> Vacunas</div></thead>
+					<td><div class="col-xs-12"> Fecha <input type="text" placeholder="Fecha"></div></td>
+					<td><div class="col-xs-12"> Descripción<textarea></textarea></div></td>
+				</tr>
+			</table>
+				<div class="col-xs-12"><button id="btnAgregar2" class="btn btn-primary">Agregar</button>
+				<button id="btnBorrar2"class="btn btn-primary">Borrar</button><br><br></div>
+			</div>
+			<hr>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div id="div2" style="display: none;">
+			<div class="row">
+				<div class="col-xs-12"><button id="btnAgregar3" class="btn btn-primary">Agregar</button>
+				<button id="btnBorrar3"class="btn btn-primary">Borrar</button><br><br></div>
+			</div>
+			<div class="row" id="clon">
+				<div class="col-xs-3" style="background-color: navy; padding: 5px; color:white;"> Venta de producto </div>
+				<div class="col-xs-3" style="background-color: navy; padding: 2px;"><input type="text" placeholder="Cliente"></div>
+				<div class="col-xs-3" style="background-color: navy; padding: 2px;"><input type="text" placeholder="Producto"></div>
+				<div align="center" class="col-xs-3" style="background-color: navy; padding: 2px;"> <button type="submit">Confirmar</div>
+			</div>
+		</div>		
+	</div>
+	<div class="container">
+		<div id="div3" style="display: none;">
+			<span class="glyphicon glyphicon-search"></span>
+			<input type="text" placeholder="Buscar cliente...">
+			<br><br><br>
+			<table class="table table-hover">
+			  	<tr>
+			  		<td>
+			  			Nombre
+			  		</td>
+			  		<td>
+			  			Apellido
+			  		</td>
+			  		<td>
+			  			Mascota
+			  		</td>
+			  	</tr>
+		  		<tr>
+		  			<td>
+		  				Guillermo
+		  			</td>
+		  			<td>
+		  				Barrera
+		  			</td>
+		  			<td>
+		  				Lolo
+		  			</td>
+		  		</tr>
+		  		<tr>
+		  			<td>
+		  				Rodrigo
+		  			</td>
+		  			<td>
+		  				Figueroa
+		  			</td>
+		  			<td>
+		  				Yaco
+		  			</td>
+		  		</tr>
+		  		<tr>
+		  			<td>
+		  				Lucas
+		  			</td>
+		  			<td>
+		  				Bogado
+		  			</td>
+		  			<td>
+		  				Sasha
+		  			</td>
+		  		</tr>
+		  	</table>
+		</div>
+	</div>
+	<div class="container">
+		<div id="div4" style="display: none;">
+			<span class="glyphicon glyphicon-search"></span>
+			<input type="text" placeholder="Buscar mascota...">
+			<br><br><br>
+			<table class="table">
+	  			<tr class="warning">
+	  				<td>
+	  					Nombre
+	  				</td>
+	  				<td>
+	  					Edad
+	  				</td>
+	  			</tr>
+  				<tr class="info">
+  					<td>
+  						Yaco
+  					</td>
+  					<td>
+  						1 año
+  					</td>
+  				</tr>
+  				<tr class="success">
+  					<td>
+  						Lolo
+  					</td>
+  					<td>
+  						2 años
+  					</td>
+  				</tr>
+  				<tr class="warning">
+  					<td>
+  						Sasha
+  					</td>
+  					<td>
+  						12 años
+  					</td>
+  				</tr>
+  			</table>
+		</div>
+	</div>
+</body>
+</html>
+
+
+<!-- file:///E:/Program%20Files%20(x86)/Sublime%20Text%203/fonts/glyphicons-halflings-regular.woff2 -->

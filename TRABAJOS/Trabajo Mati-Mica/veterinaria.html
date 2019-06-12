@@ -1,0 +1,137 @@
+<!DOCTYPE html> <!-- definimos el doctype -->
+<html lang="en">
+<head>
+  <title>Veterinaria Cachorros</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link href="bootstrap.min.css" rel="stylesheet" >
+  <script src="jquery-3.3.1.js"></script>
+  <script src="bootstrap.min.js"></script>
+  
+  <script type="text/javascript">
+  	$(document).ready(function(){
+  		console.log("bootstrap con jquery!")
+
+    $("#btnAgregar").click(function(){
+      var nuevoTr = $("#tabla1 tr:last").clone();
+      nuevoTr.find("input").val("");
+      $("#tabla1").append(nuevoTr);
+    });
+    
+    $("#btnBorrar").click(function(){
+      if($("#tabla1 tr").length>1){
+        $("#tabla1 tr:last").remove();
+      }else{
+        alert("No hay mas elementos para borrar.");
+      }
+    });
+     
+    $("#btnAgregar1").click(function(){
+      var nuevoTr = $("#tabla2 tr:last").clone();
+      nuevoTr.find("input").val("");
+      $("#tabla2").append(nuevoTr);
+    });
+    
+    $("#btnBorrar1").click(function(){
+      if($("#tabla2 tr").length>1){
+        $("#tabla2 tr:last").remove();
+      }else{
+        alert("No hay mas elementos para borrar.");
+      }
+    });
+
+    $("#btnAgregar2").click(function(){
+      var nuevoTr = $("#tabla3 tr:last").clone();
+      nuevoTr.find("input").val("");
+      $("#tabla3").append(nuevoTr);
+    });
+    
+    $("#btnBorrar2").click(function(){
+      if($("#tabla3 tr").length>1){
+        $("#tabla3 tr:last").remove();
+      }else{
+        alert("No hay mas elementos para borrar.");
+      }
+    });
+
+  	});
+  </script>
+  
+</head>
+<body>
+
+
+<div class="container">
+
+<center><h2>Veterinaria Cachorros</h2></center>
+<center><h2>Alta Mascotas</h2></center>
+<h2>Mascota</h2>
+        <div class="container-fluid">
+          <input type="text" placeholder="nombre">
+         <input type="text" placeholder="apellido">
+       </div>
+  	
+  <h2>Dueños</h2>
+  <div class="table-responsive">
+   <table id="tabla1" class="table">
+      <tr id="">
+          <td>
+	  	      <input type="text" placeholder="nombre">
+          </td>
+          <td>	
+            <input type="text" placeholder="apellido">
+          </td>
+          <td>
+            <input type="text" placeholder="dni">
+          </td>
+          <td>
+             <input type="text" placeholder="telefono movil">
+          </td>
+          <td>
+             <input type="text" placeholder="telefono fijo">
+          </td>
+          <td>
+              <input type="text" placeholder="direccion">
+          </td>
+          <td>   
+              <input type="text" placeholder="e-mail">
+          </td>
+      </tr>
+    </table>
+  </div>
+  
+      <button id="btnAgregar">Agregar</button>
+      <button id="btnBorrar">Borrar</button>
+   
+
+   <h2>Historia Clinica</h2>
+   <table id="tabla2">
+      <tr id="1">
+          <td>  
+             <input type="text" placeholder="fecha">  
+          </td>
+          <td>
+             <textarea rows="1" cols="20" placeholder="descripcion"></textarea>     
+          </td>   
+    </tr>
+  </table>
+        <button id="btnAgregar1">Agregar</button>
+      <button id="btnBorrar1">Borrar</button>
+  <h2>Vacunas</h2>
+  <table id="tabla3">
+      <tr id="2">
+      <td>  
+          <input type="text" placeholder="fecha">
+      </td>
+      <td>  
+          <textarea rows="1" cols="20" placeholder="descripcion"></textarea>      
+      </td>
+    </tr>
+  </table>
+        <button id="btnAgregar2">Agregar</button>
+      <button id="btnBorrar2">Borrar</button>
+      <center><button name="Boton" value="Boton" onclick="window.location='Veterinaria 2.html'">Volver</button></center>
+</body>
+
+</html>

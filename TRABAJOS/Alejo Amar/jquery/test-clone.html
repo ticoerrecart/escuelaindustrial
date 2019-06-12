@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>test selectores</title>
+  <style>
+  
+  button {
+    font-size: 14px;
+  }
+  </style>
+  <script src="jquery-3.3.1.js"></script>
+  
+  <script>
+	$( document ).ready(function() {
+		
+		
+		$("#btnAgregar").click(function(){
+			var nuevoTr = $("#tabla1 tr:last").clone();
+			nuevoTr.find("input").val("");
+			$("#tabla1").append(nuevoTr);
+		});
+		
+		$("#btnBorrar").click(function(){
+			if($("#tabla1 tr").length>2){
+				$("#tabla1 tr:last").remove();
+			}else{
+				alert("No hay mas elementos para borrar.");
+			}
+		});
+	});
+  </script>
+
+</head>
+<body>
+ 
+<p>tabla con tag table html</p>
+ <table border="0" id="tabla1">
+ 	<thead>
+ 		<tr>
+ 			<td>Columna 1</td>
+ 			<td>Columna 2</td>
+ 		</tr>
+ 	</thead>
+ 	<tbody>
+ 		<tr id="">
+ 			<td><input type="text" class="input" id="input1" value="input1"></td>
+ 			<td><input type="text" class="input" id="input2" value="input2"></td>
+ 		</tr>
+ 	</tbody>
+ </table>
+ 	
+ 	<input type="button" id="btnAgregar" value="Agregar"/>
+ 	<input type="button" id="btnBorrar" value="Borrar"/>
+ 
+ 
+</body>
+</html>

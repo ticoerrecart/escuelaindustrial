@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>test tablas</title>
+  <style>
+  
+  button {
+    font-size: 14px;
+  }
+  </style>
+  <script src="jquery-3.3.1.js"></script>
+  
+  <script>
+	$( document ).ready(function() {
+		console.log( "ready!.  Con F12 podes abrir la consola para hacer pruebas" );
+		console.log("el valor del input1 al cargar la pagina es: " + $("#input1").val())
+		console.log("la cantidad de tags con clase '.input' en el momento de la carga de la pagina es: " + $(".input").length)
+	
+		$("#botonEdad").click(function(){
+			console.log("click en calcular edades");
+			var suma = 0;
+			$(".edad").each(function(indx){
+				console.log("posicion: " + indx + "-" + $(this).val());
+				var edad = $(this).val();
+				
+				if(isNaN(edad)){
+					alert("Debe ingresar una edad en la fila " + (indx+1));
+				}else{
+					suma = parseInt(suma) + parseInt(edad);
+				}
+			});
+			
+			$("#totalEdades").val(suma);
+		});
+	});
+  </script>
+
+</head>
+<body>
+
+ <p>tabla con tag table html</p>
+ <table border="0" id="tabla1">
+ 	<thead>
+ 		<tr>
+ 			<td>Columna 1</td>
+ 			<td>Columna 2</td>
+ 		</tr>
+ 	</thead>
+ 	<tbody>
+ 		<tr>
+ 			<td><input type="text" class="input" id="input1" value="input1"></td>
+ 			<td><input type="text" class="input" id="input2" value="input2"></td>
+ 			<td><input type="text" class="input" id="input1" value="input1"></td>
+ 			<td><input type="text" class="input" id="input2" value="input2"></td>
+ 			<td><input type="text" class="input" id="input1" value="input1"></td>
+ 			<td><input type="text" class="input" id="input2" value="input2"></td>
+ 			<td><input type="text" class="input" id="input1" value="input1"></td>
+ 			<td><input type="text" class="input" id="input2" value="input2"></td>
+ 		</tr>
+ 		<tr>
+ 			<td><input type="text" class="input" id="input3" value="input3"></td>
+ 			<td><input type="text" class="input" id="input4" value="input4"></td>
+ 			<td><input type="text" class="input" id="input1" value="input1"></td>
+ 			<td><input type="text" class="input" id="input2" value="input2"></td>
+ 			<td><input type="text" class="input" id="input1" value="input1"></td>
+ 			<td><input type="text" class="input" id="input2" value="input2"></td>
+ 			<td><input type="text" class="input" id="input1" value="input1"></td>
+ 			<td><input type="text" class="input" id="input2" value="input2"></td>
+ 		</tr>
+ 		
+ 	</tbody>
+ </table>
+ 
+ 
+ <p>tabla con div y span</p>
+ <div id="tabla2">
+ 	 <div align="center" style="width: 10%;">
+	 	<span style="border:1px solid red;text-align:center">Nombre</span>
+	 	<span style="border:1px solid red;text-align:center">Edad</span>
+	 </div>
+	 <div>
+	 	<span><input type="text" class="input" id="input5" value="Juan"></span>
+	 	<span><input type="text" class="input edad" id="input6" value="10"></span>
+	 </div>
+	 <div>
+	 	<span><input type="text" class="input" id="input7" value="Maria"></span>
+	 	<span><input type="text" class="input edad" id="input8" value="8"></span>
+	 </div>
+	 <div>
+	 	<span><input type="text" class="input" id="input9" value="Juana"></span>
+	 	<span><input type="text" class="input edad" id="input10" value="12"></span>
+	 </div>
+	 <div>
+	 	<span><input type="button" id="botonEdad" value="Calcular suma de las edades"></span>
+	 	<span><input type="text" class="input" id="totalEdades" value="0"></span>
+	 </div>
+ </div>
+
+
+</body>
+</html>

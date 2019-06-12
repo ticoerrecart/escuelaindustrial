@@ -1,0 +1,277 @@
+<!DOCTYPE html> <!-- definimos el doctype -->
+<html lang="en">
+<head>
+  <title>Bootstrap Ejemplo Jumbotron + sistema de grillas</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
+  <script src="../jquery/jquery-3.3.1.js"></script>
+  <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+  
+  <script type="text/javascript">
+  	$(document).ready(function(){
+  		console.log("bootsrap con jquery!")
+  		//botones dueños
+  		$("#agregarduenio").click(function(){
+  			var clonado = $("#clonarduenios").clone();
+  			$(clonado).attr("id","");
+  			$(clonado).attr("class","aBorrar");
+  			$("#clonarduenios").append(clonado);
+  		});
+
+  		$("#borrarduenio").click(function(){
+  			$(".aBorrar:last").remove();
+  		});
+
+		//botones historia clinica
+  		$("#agregarhistoriaclinica").click(function(){
+  			var clonado = $("#clonarhistoriaclinica").clone();
+  			$(clonado).attr("id","");
+  			$(clonado).attr("class","aBorrarHC");
+  			$("#clonarhistoriaclinica").append(clonado);
+  		});
+
+  		$("#borrarhistoriaclinica").click(function(){
+  			$(".aBorrarHC:last").remove();
+  		});
+  		//Vacunas
+  		$("#agregarvacunas").click(function(){
+  			var clonado = $("#clonarvacunas").clone();
+  			$(clonado).attr("id","");
+  			$(clonado).attr("class","aBorrarVacunas");
+  			$("#clonarvacunas").append(clonado);
+  		});
+
+  		$("#borrarvacunas").click(function(){
+  			$(".aBorrarVacunas:last").remove();
+  		});
+
+  	})
+  </script>
+  
+</head>
+<body>
+
+
+<div class="jumbotron text-center">
+  <h1>Tienda de mascotas</h1>
+  <p>Alta de mascota</p> 
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 text-center" style="background-color:  lightgrey">
+      <h3>Mascota</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-4">
+      <h3>Nombre</h3>
+    </div>
+    <div class="col-sm-4">
+      <h3>Edad</h3>
+    </div>
+    <div class="col-sm-4">
+      <h3>Raza</h3> 
+    </div>
+  </div>
+
+<div class="row">
+    <div class="col-sm-4">
+      <input type="text" name="">
+    </div>
+    <div class="col-sm-4">
+      <input type="text" name="">
+    </div>
+    <div class="col-sm-4">
+      <input type="text" name="">
+    </div>
+  </div>
+<br>
+
+<!-- dueños-->
+<div class="row">
+    <div class="col-sm-12 text-center" style="background-color:  lightgrey">
+      <h3>Dueños</h3>
+    </div>
+ </div>
+
+ <div id="clonarduenios">
+ 	
+ 
+	 <div class="row">
+	    <div class="col-sm-4">
+	      <h3>Nombre y apellido</h3>
+	    </div>
+	    <div class="col-sm-4">
+	      <h3>DNI</h3>
+	    </div>
+	    <div class="col-sm-4">
+	      <h3>Telefono</h3> 
+	    </div>
+	 </div>
+	 
+	 <div class="row">
+	    <div class="col-sm-4">
+	      <input type="text" name="">
+	    </div>
+	    <div class="col-sm-4">
+	      <input type="text" name="">
+	    </div>
+	    <div class="col-sm-4">
+	      <input type="text" name="">
+	    </div>
+	  </div>
+
+	  <div class="row">   
+	    <div class="col-sm-4">
+	      <h3>Direccion</h3> 
+	    </div>
+		<div class="col-sm-4">
+	      <h3>Email</h3> 
+	    </div>
+
+	  </div>
+	  <div class="row">
+	    <div class="col-sm-4">
+	      <input type="text" name="">
+	    </div>
+	    <div class="col-sm-4">
+	      <input type="text" name="">
+	    </div>
+	  </div> 
+	   <div class="row">
+		<div class="col-sm-12 text-center">
+			<br>
+		</div>
+		</div>	 
+</div>
+
+ <div class="row">
+    <div class="col-sm-3 text-center">
+      <input type="button" name="agregar" value="agregar" id="agregarduenio">
+	</div>
+	<div class="col-sm-3 text-center">
+      <input type="button" name="agregar" value="borrar" id="borrarduenio">
+	</div>
+  </div>   
+
+
+
+
+<!-- historia clinica-->
+<div class="row">
+    <div class="col-sm-12 text-center" style="background-color:  lightgrey">
+      <h3>Historia Clinica</h3>
+    </div>
+ </div>
+
+ <div id="clonarhistoriaclinica">
+ 	
+ 
+	 <div class="row">
+	    <div class="col-sm-4">
+	      <h3>Nombre</h3>
+	    </div>
+	    <div class="col-sm-4">
+	      <h3>Observaciones</h3>
+	    </div>
+	    <div class="col-sm-4">
+	      <h3>fecha</h3> 
+	    </div>
+	 </div>
+	 
+	 <div class="row">
+	    <div class="col-sm-4">
+	      <input type="text" name="">
+	    </div>
+	    <div class="col-sm-4">
+	      <input type="text" name="">
+	    </div>
+	    <div class="col-sm-4">
+	      <input type="date" name="">
+	    </div>
+	  </div>
+
+	  <div class="row">   
+	    <div class="col-sm-4">
+	      <h3>Descripcion</h3> 
+	    </div>
+	  </div>
+	  <div class="row">
+	    <div class="col-sm-4">
+	      <textarea rows="5" cols="40"></textarea>
+	    </div>
+	  </div> 
+	   <div class="row">
+		<div class="col-sm-12 text-center">
+			<br>
+		</div>
+		</div>	 
+</div>
+
+ <div class="row">
+    <div class="col-sm-3 text-center">
+      <input type="button" name="agregar" value="agregar" id="agregarhistoriaclinica">
+	</div>
+	<div class="col-sm-3 text-center">
+      <input type="button" name="agregar" value="borrar" id="borrarhistoriaclinica">
+	</div>
+  </div>
+
+<!-- Vacunas-->
+
+
+
+  <div class="row">
+    <div class="col-sm-12 text-center" style="background-color:  lightgrey">
+      <h3>Vacunas</h3>
+    </div>
+ </div>
+
+  <div id="clonarvacunas">
+  <div class="row">
+	    <div class="col-sm-4">
+	      <h3>Nombre</h3>
+	    </div>
+	    <div class="col-sm-4">
+	      <h3>Vacuna</h3>
+	    </div>
+	    <div class="col-sm-4">
+	      <h3>Fecha</h3> 
+	    </div>
+	 </div>
+	  <div class="row">
+	    <div class="col-sm-4">
+	      <input type="text" name="">
+	    </div>
+	    <div class="col-sm-4">
+	      <input type="text" name="">
+	    </div>
+	    <div class="col-sm-4">
+	      <input type="date" name="">
+	    </div>
+	  </div>
+	</div>
+
+<div class="row">
+		<div class="col-sm-12 text-center">
+			<br>
+		</div>
+</div>
+
+<div class="row">
+    <div class="col-sm-3 text-center">
+      <input type="button" name="agregar" value="agregar" id="agregarvacunas">
+	</div>
+	<div class="col-sm-3 text-center">
+      <input type="button" name="agregar" value="borrar" id="borrarvacunas">
+	</div>
+  </div>
+
+
+
+</body>
+</html>

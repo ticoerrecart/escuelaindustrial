@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>animate demo</title>
+  <style>
+  div {
+    background-color: #bca;
+    width: 100px;
+    border: 1px solid green;
+  }
+  </style>
+  <!--script src="https://code.jquery.com/jquery-1.10.2.js"></script-->
+  <script src="jquery-3.3.1.js"></script>
+  <script type="text/javascript">
+  	$(document).ready(function(){
+  		$( "#mostrarT1" ).click(function() {
+  		  mostrar($("#tabla1"));
+  		});
+
+  		$( "#ocultarT1" ).click(function() {
+  			ocultar($("#tabla1"));  
+  		});
+  		
+  		$( "#mostrarDiv1" ).click(function() {
+  			mostrar($("#div1"));
+  		});
+  		
+  		$( "#ocultarDiv1" ).click(function() {
+  			ocultar($("#div1"));
+  		});
+
+		function mostrar(elem){
+			$(elem).show();
+		}
+		
+		function ocultar(elem){
+			$(elem).hide();
+		}
+
+		
+		//------------ toggle
+		$( "#toggleDiv1" ).click(function() {
+  			$("#div1").toggle("slow");
+  		});
+		
+		
+		$( "#toggleT1" ).click(function() {
+  			$("#tabla1").toggle("slow");
+  		});
+		
+		//------------- fade toggle
+		$( "#fadeToggleDiv1" ).click(function() {
+  			$("#div1").fadeToggle("slow");
+  		});
+		
+		$( "#fadeToggleT1" ).click(function() {
+  			$("#tabla1").fadeToggle("slow");
+  		});
+		
+		//-------------slide toggle
+		$( "#slideToggleDiv1" ).click(function() {
+  			$("#div1").slideToggle("slow");
+  		});
+		
+		$( "#slideToggleT1" ).click(function() {
+  			$("#tabla1").slideToggle("slow");
+  		});
+  	})
+  </script>
+  
+</head>
+<body>
+ 
+
+<button id="mostrarDiv1">&raquo; Mostrar Div 1</button>
+<button id="ocultarDiv1">&raquo; Ocultar Div 1</button>
+<button id="toggleDiv1">&raquo; Mostrar/Ocultar Div 1 usando toggle</button>
+<button id="fadeToggleDiv1">&raquo; Mostrar/Ocultar Div 1 usando toggle con efecto fade</button>
+<button id="slideToggleDiv1">&raquo; Mostrar/Ocultar Div 1 usando toggle con efecto slide</button>
+
+
+
+<div id="div1">Div 1!</div>
+
+<br/>
+<button id="mostrarT1">&raquo; Mostrar Tabla 1</button>
+<button id="ocultarT1">&raquo; Ocultar Tabla 1</button>
+<button id="toggleT1">&raquo; Mostrar/Ocultar Tabla 1 usando toggle</button>
+<button id="fadeToggleT1">&raquo; Mostrar/Ocultar Tabla 1 usando toggle con efecto fade</button>
+<button id="slideToggleT1">&raquo; Mostrar/Ocultar Tabla 1 usando toggle con efecto slide</button>
+
+<table id="tabla1">
+	<tr>
+		<td>Nombre</td>
+		<td>Apellido</td>
+		<td>Telefono</td>
+	</tr>
+	<tr>
+		<td><input type="text" name="nombre"/></td>
+		<td><input type="text" name="apellido"/></td>
+		<td><input type="text" name="telefono"/></td>
+	</tr>
+</table>
+ 
+ 
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Listado de mascotas</title>
+   <script src="jquery-3.1.1.js"></script>	
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
+     <style>
+  
+  button {
+    font-size: 14px;
+  }
+  </style>
+  <script>
+  	 
+	$( document ).ready(function() {
+		
+		$("#btnBuscar").click(function(){
+			$("#tabla1")
+		});
+	});
+	</script>
+</head>
+<body>
+	
+		<h2 align="center" style="color:pink">Listado de mascotas</h2>
+		<table style="border-color:purple" border="3" id="tabla1" align="center">
+			<thead>
+			<tr>
+				<td>Nombre</td>
+				<td>Edad</td>
+				<td>Dueño/s</td>
+				<td>Nro de vacunas</td>
+			</tr>
+			</thead>
+			<tbody>
+				<tr>
+ 			<td><input type="text" class="input" id="Nombre" value="Rufus Rufinius"></td>
+ 			<td><input type="text" class="input" id="Edad" value="7"></td>
+ 			<td><input type="text" class="input" id="Dueño/s" value="Jorge Nitales"></td>
+ 			<td><input type="text" class="input" id="Nro de vacunas" value="9"></td>
+ 		       </tr>
+ 				<tr>
+ 			<td><input type="text" class="input" id="Nombre" value="Francesco"></td>
+ 			<td><input type="text" class="input" id="Edad" value="2"></td>
+ 			<td><input type="text" class="input" id="Dueño/s" value="Estefi Errote"></td>
+ 			<td><input type="text" class="input" id="Nro de vacunas" value="3"></td>
+ 		       </tr>
+			</tbody>
+		</table>
+		<table align="center">
+ 		<tr>
+ 			<td><input type="button" id="btnBuscar" value="Buscar"/></td>
+
+ 		</tr>
+ 	</table>
+ 
+</body>
+</html>

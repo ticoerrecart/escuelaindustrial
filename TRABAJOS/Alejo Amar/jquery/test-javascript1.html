@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>test tablas</title>
+  <style>
+  
+  button {
+    font-size: 14px;
+  }
+  </style>
+  <!--script src="jquery-3.3.1.js"></script-->
+  <!-- comento esta linea, no hago el import de jquery porque uso javascript puro!! -->
+  
+  <script>
+  var miVariableGlobal = 1;
+  
+  //declaramos una funcion
+  function miFuncion(){
+	  var miVariable = "local";
+	  console.log("miVariable dentro de miFuncion: " + miVariable);
+	  //a pesar de cambiarle el valor, solo estoy referenciando a la variable dentro de miFuncion
+	  miVariable="escribo algo";
+	  console.log("miVariableGlobal dentro de miFuncion: " + miVariableGlobal);
+  }
+  
+  //acá escribimos nuestro código javascript
+  //variables
+  var miVariable = "global";
+  console.log("miVariable: " + miVariable);
+  
+  //bloques y alcances de variables
+  miFuncion();
+  
+  console.log("vuelvo a imprimir miVariable (dentro del bloque padre): " + miVariable);
+  
+  
+  console.log("miVariableGlobal: " + miVariableGlobal);
+  
+  console.log("");
+  //if else
+  if(miVariableGlobal >= 1){
+	  console.log("miVariableGlobal es mayor o igual a 1");
+  }else{
+	  console.log("miVariableGlobal es menor a 1");
+  }
+  
+  </script>
+
+</head>
+<body>
+
+
+</body>
+</html>
