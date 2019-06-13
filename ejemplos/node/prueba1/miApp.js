@@ -4,7 +4,8 @@ var mysql      = require('mysql');
 var connection = mysql.createConnection({
 	  host     : 'localhost',
 	  user     : 'root',
-	  password : 'tico'
+	  password : 'tico',
+	  database : 'tiendademascotas'
 	});
 
 
@@ -25,8 +26,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 //-------------------------------------------------------------------------------------------------------------
-var data = [{"nombre": "Mario","edad":"15", "duenios":[{"nombre":"Juan"},{"nombre":"Gregoria"}]},
-	          {"nombre": "Flunfli","edad":"5", "duenios":[{"nombre":"Bautista"},{"nombre":"Maria"}]}
+var data = [{"id":"1","nombre": "Mario","edad":"15", "duenios":[{"nombre":"Juan"},{"nombre":"Gregoria"}]},
+	          {"id":"2","nombre": "Flunfli","edad":"5", "duenios":[{"nombre":"Bautista"},{"nombre":"Maria"}]}
 			];
 
 function buscar(nombre){
@@ -43,17 +44,38 @@ function buscar(nombre){
 }
 
 
-function testDB(){
+function testDB(res){
+	//console.log("antes del connect");
 	connection.connect();
+	//console.log("despues del connect");
 	
-	connection.query('SELECT 1 + 1 AS solution', 
-			function(err, rows, fields) {
-			  if (err) throw err;
-			  console.log('The solution is: ', rows[0].solution);
-			}
+	
+	connection.query('SELECT * FROM mascota', 
+		function(err, rows, fields) {
+			console.log("callback");
+			var mascotas = [];
+			if (err) throw err;
+			  
+			rows.forEach(function(elem){
+				var miMascota = {};
+				miMascota.id = elem.id;
+				miMascota.nombre = elem.nombre;
+				miMascota.edad = elem.edad;
+				
+				mascotas.push(miMascota);
+				console.log(miMascota);
+				//console.log(elem.id + "," + elem.nombre);
+				
+			});//end forEach
+			
+			console.log("mascotas:" + mascotas);
+			return res.json(mascotas);
+			
+		}
 	);
-	
+
 	connection.end();
+
 }
 
 //----------------------- mappings ---------------------------------------------------------------------------------
@@ -81,7 +103,7 @@ app.post('/mascotasGuardar', function (req, res) {
 
 
 app.get('/testDB', function (req, res) {
-	  testDB();
+	  testDB(res);
 	});
 
 //----------------------- server up -------------------------------------------------------------------------------
