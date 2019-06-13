@@ -1,5 +1,12 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var mysql      = require('mysql');
+var connection = mysql.createConnection({
+	  host     : 'localhost',
+	  user     : 'root',
+	  password : 'tico'
+	});
+
 
 
 var app = express();
@@ -17,7 +24,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 
-
+//-------------------------------------------------------------------------------------------------------------
 var data = [{"nombre": "Mario","edad":"15", "duenios":[{"nombre":"Juan"},{"nombre":"Gregoria"}]},
 	          {"nombre": "Flunfli","edad":"5", "duenios":[{"nombre":"Bautista"},{"nombre":"Maria"}]}
 			];
@@ -36,7 +43,20 @@ function buscar(nombre){
 }
 
 
+function testDB(){
+	connection.connect();
+	
+	connection.query('SELECT 1 + 1 AS solution', 
+			function(err, rows, fields) {
+			  if (err) throw err;
+			  console.log('The solution is: ', rows[0].solution);
+			}
+	);
+	
+	connection.end();
+}
 
+//----------------------- mappings ---------------------------------------------------------------------------------
 
 app.get('/', function (req, res) {
   res.send('Bienvenido a la Tienda de Mascotas!');
@@ -60,7 +80,11 @@ app.post('/mascotasGuardar', function (req, res) {
 });
 
 
+app.get('/testDB', function (req, res) {
+	  testDB();
+	});
 
+//----------------------- server up -------------------------------------------------------------------------------
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!');
 });
