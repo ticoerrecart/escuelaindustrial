@@ -1,0 +1,11 @@
+instalacion:
+
+1- instalar nodejs
+2- crear carpeta "prueba"
+3- pararse en la carpeta del paso 2
+4- npm init
+5- npm install express --save
+6- npm install body-parser --save
+7- npm install mysql --save
+8- instalar mysql
+9- correr script "script.sql"
