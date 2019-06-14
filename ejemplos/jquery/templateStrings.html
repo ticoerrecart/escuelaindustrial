@@ -51,12 +51,27 @@
 		
 		
 		//ver ejemplo con html haciendo append()
-		
+		$("#clonar").click(function(){
+			$("#tabla1").append(`<tr>
+									<td>
+									<input type="text" name="" placeholder="ingresar nombre">
+								</td>
+								</tr>`);
+		});
 	});
   </script>
 
 </head>
 <body>
+	<table id="tabla1">
+		<tr>
+			<td>
+				<input type="text" name="" placeholder="ingresar nombre">
+			</td>
+		</tr>
+	</table>
+	<input type="button" id="clonar" value="clonar con string literals">
+
  
 </body>
 </html>
