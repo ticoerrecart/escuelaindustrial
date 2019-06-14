@@ -21,6 +21,7 @@
 		
 		//ver en este ejemplo como primero se resuelve lo que esta dentro de la 
 		//comilla especial con ${valor} y despues concatena todo
+		//ejemplo de array json
 		var animales = ["perro","gato"];
 		var texto2 = "La lista de animales tiene :";
 		$(animales).each(function(ind,elem){
@@ -29,7 +30,28 @@
 		
 		console.log(texto2);
 		
+		
+		//ejemplo con objeto json
+		var miObjeto = {"nombre":"Juan", 
+				"apellido":"Perez Bolfin",
+				"edad":"38",
+				"amigos":[{"nombre":"Maria"},{"nombre":"Alfonso"},{"nombre":"Alicia"}]
+			};
+		var str = `mi nombre es ${miObjeto.nombre}, apellido: ${miObjeto.apellido}, tengo ${miObjeto.edad} y mis amigos son ${miObjeto.amigos.length}: `;
+		var cantAmigos = miObjeto.amigos.length;
+		$(miObjeto.amigos).each(function(key, elem){
+			str+=` ${elem.nombre} `;
+			if(key<cantAmigos-1){
+				str+=",";
+			}
+		});
+		
+		
+		console.log(str);
+		
+		
 		//ver ejemplo con html haciendo append()
+		
 	});
   </script>
 
