@@ -1,16 +1,15 @@
 {
-  "name": "prueba1",
+  "name": "prueba3",
   "version": "1.0.0",
-  "description": "prueba node con express",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "BSD-2-Clause",
+  "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
-    "express": "^4.13.4",
-    "mysql": "^2.17.1"
+    "express": "^4.17.1"
   }
 }
