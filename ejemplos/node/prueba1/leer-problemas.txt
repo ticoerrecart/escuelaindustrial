@@ -4,3 +4,6 @@ si da error (ERR! Error: CERT_UNTRUSTED)
 si da error "ERR! stack Error: Can't find Python executable "python", you can set the PYTHON env variable."
 >npm install --global --production windows-build-tools
 >npm install node-gyp o node-pre-gyp
+
+si da error: npm ERR! Unexpected end of JSON input while parsing near '...
+>npm cache clean --force
