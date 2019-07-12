@@ -14,7 +14,8 @@ var app = express();
 
 app.use(function(req, res, next) {
 	  res.header("Access-Control-Allow-Origin", "*");
-	  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	  //res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	  res.header("Access-Control-Allow-Headers", "*");
 	  
 	  next();//paso el control al próximo handler (si hubiera varios en la cadena) con esta funcion
 	});
@@ -26,36 +27,26 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 //-------------------------------------------------------------------------------------------------------------
-var data = [{"id":"1","nombre": "Mario","edad":"15", "duenios":[{"nombre":"Juan"},{"nombre":"Gregoria"}]},
+/*var data = [{"id":"1","nombre": "Mario","edad":"15", "duenios":[{"nombre":"Juan"},{"nombre":"Gregoria"}]},
 	          {"id":"2","nombre": "Flunfli","edad":"5", "duenios":[{"nombre":"Bautista"},{"nombre":"Maria"}]}
 			];
+*/
 
-function buscar(nombre){
-	/*data.forEach(function(elem){
-		console.log(elem.nombre);
-	});*/
-	var elem = data.filter(function(elem) {
-		var nombreData = elem.nombre.toLowerCase();
-		//console.log(nombreData.indexOf(nombre.toLowerCase()));
-	  return nombreData.indexOf(nombre.toLowerCase())>=0;
-	});
-	
-	return elem;
-}
-
-
-function testDB(res){
-	//console.log("antes del connect");
+function buscar(res, nombre){
 	connection.connect();
-	//console.log("despues del connect");
+	console.log("despues del connect");
 	
 	
-	connection.query('SELECT * FROM mascota', 
+	connection.query('SELECT * FROM mascota WHERE nombre like ?',
+			["%" + nombre + "%"],
 		function(err, rows, fields) {
 			console.log("callback");
 			var mascotas = [];
 			if (err) throw err;
-			  
+			if(rows.length==0){
+				console.log("No hay mascotas");
+			}
+			
 			rows.forEach(function(elem){
 				var miMascota = {};
 				miMascota.id = elem.id;
@@ -76,9 +67,72 @@ function testDB(res){
 	
 	//la conexion la cierro enseguida, no espero el resultado del callback
 	connection.end();
+}
+
+
+function listadoMascotas(res){
+	//console.log("antes del connect");
+	connection.connect();
+	//console.log("despues del connect");
+	
+	
+	connection.query('SELECT * FROM mascota', 
+		function(err, rows, fields) {
+			console.log("callback");
+			var mascotas = [];
+			if (err) throw err;
+			if(rows.length==0){
+				console.log("No hay mascotas");
+			}else{  
+				rows.forEach(function(elem){
+					var miMascota = {};
+					miMascota.id = elem.id;
+					miMascota.nombre = elem.nombre;
+					miMascota.edad = elem.edad;
+					
+					mascotas.push(miMascota);
+					console.log(miMascota);
+					//console.log(elem.id + "," + elem.nombre);
+					
+				});//end forEach
+
+			}
+			
+			console.log("mascotas:" + mascotas);
+			return res.json(mascotas);
+			
+		}
+	);
+	
+	//la conexion la cierro enseguida, no espero el resultado del callback
+	connection.end();
 
 }
 
+function nuevoId(connection){
+	var max=1;
+	
+	connection.query('SELECT max(id) id FROM mascota', 
+		function(err, rows, fields) {
+			console.log("callback");
+			if (err) throw err;
+			  
+			rows.forEach(function(elem){
+				console.log(elem);
+				console.log(elem.id);
+				if(elem.id>1){
+					max=elem.id;
+				}
+				
+			});//end forEach
+			
+			//return max;
+			
+		}
+	);
+	
+	//return max;
+}
 
 function guardar(mascota){
 	//console.log("antes del connect");
@@ -86,7 +140,8 @@ function guardar(mascota){
 	//console.log("despues del connect");
 	
 	
-	connection.query('INSERT INTO mascota (id, nombre, edad) VALUES (:id, :nombre, :edad)', 
+	connection.query('INSERT INTO mascota (nombre, edad) VALUES (?, ?)', 
+			[mascota.nombre, mascota.edad],
 		function(err, rows, fields) {
 			console.log("callback");
 			if (err) throw err;
@@ -109,26 +164,36 @@ app.get('/', function (req, res) {
 });
 
 app.get('/mascotas', function (req, res) {
-	res.json(data);
+	listadoMascotas(res);
 });
 
 app.get('/mascotasBuscar/:texto', function (req, res) {
 	console.log(req.params.texto);
-	var data = buscar(req.params.texto)
-	res.json(data);
+	buscar(res, req.params.texto);
+	//var data = buscar(res, req.params.texto)
+	//res.json(data);
 });
 
 app.post('/mascotasGuardar', function (req, res) {
 	var miMascotaNueva = req.body;
 	console.log(miMascotaNueva);
-	guardar(miMascotaNueva);
-	res.json({"mensaje":"Se han guardado correctamente los datos"});
+	if(miMascotaNueva.nombre=="" || miMascotaNueva.edad==""){
+		res.json({"mensaje":"Debe completar el nombre y la edad de la mascota"});
+	}else{
+		guardar(miMascotaNueva);
+		res.json({"mensaje":"Se han guardado correctamente los datos"});
+	}
 });
 
+app.get('/nuevoId', function (req, res) {
+	connection.connect();
+	nuevoId(connection);
+	
+	//la conexion la cierro enseguida, no espero el resultado del callback
+	connection.end();
 
-app.get('/testDB', function (req, res) {
-	  testDB(res);
-	});
+	res.json({"mensaje":"nuevo id en consola"});
+});
 
 //----------------------- server up -------------------------------------------------------------------------------
 app.listen(3000, function () {
