@@ -73,10 +73,34 @@ function testDB(res){
 			
 		}
 	);
-
+	
+	//la conexion la cierro enseguida, no espero el resultado del callback
 	connection.end();
 
 }
+
+
+function guardar(mascota){
+	//console.log("antes del connect");
+	connection.connect();
+	//console.log("despues del connect");
+	
+	
+	connection.query('INSERT INTO mascota (id, nombre, edad) VALUES (:id, :nombre, :edad)', 
+		function(err, rows, fields) {
+			console.log("callback");
+			if (err) throw err;
+			  
+			console.log("alta mascotas:" + mascotas);
+		}
+	);
+	
+	//la conexion la cierro enseguida, no espero el resultado del callback
+	connection.end();
+
+}
+
+
 
 //----------------------- mappings ---------------------------------------------------------------------------------
 
@@ -97,7 +121,7 @@ app.get('/mascotasBuscar/:texto', function (req, res) {
 app.post('/mascotasGuardar', function (req, res) {
 	var miMascotaNueva = req.body;
 	console.log(miMascotaNueva);
-	data.push(miMascotaNueva);
+	guardar(miMascotaNueva);
 	res.json({"mensaje":"Se han guardado correctamente los datos"});
 });
 

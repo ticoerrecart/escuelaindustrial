@@ -9,3 +9,11 @@ instalacion:
 7- npm install mysql --save
 8- instalar mysql
 9- correr script "script.sql"
+
+en caso de tener que configurar un proxy:
+1->ping proxy
+2-npm config set proxy http://proxy.com.ar:puerto
+3-npm config set https-proxy http://proxy.com.ar:puerto
+
+4-npg config get proxy (devuelve la configuracion del proxy)
+5-npm config list (devuelve todas las configuraciones de npm)

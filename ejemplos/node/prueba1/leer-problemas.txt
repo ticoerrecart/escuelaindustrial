@@ -7,3 +7,8 @@ si da error "ERR! stack Error: Can't find Python executable "python", you can se
 
 si da error: npm ERR! Unexpected end of JSON input while parsing near '...
 >npm cache clean --force
+
+Si da error de Cross origin aunque esté el codigo:
+res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+entonces hay que ampliarlo a mas alcance con:
+res.header("Access-Control-Allow-Headers", "*");
