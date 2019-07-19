@@ -14,7 +14,6 @@ var app = express();
 
 app.use(function(req, res, next) {
 	  res.header("Access-Control-Allow-Origin", "*");
-	  //res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 	  res.header("Access-Control-Allow-Headers", "*");
 	  
 	  next();//paso el control al próximo handler (si hubiera varios en la cadena) con esta funcion
@@ -33,12 +32,9 @@ app.use(bodyParser.json());
 */
 
 function buscar(res, nombre){
-	connection.connect();
-	console.log("despues del connect");
-	
 	
 	connection.query('SELECT * FROM mascota WHERE nombre like ?',
-			["%" + nombre + "%"],
+			["%" + nombre + "%"],		
 		function(err, rows, fields) {
 			console.log("callback");
 			var mascotas = [];
@@ -54,7 +50,7 @@ function buscar(res, nombre){
 				miMascota.edad = elem.edad;
 				
 				mascotas.push(miMascota);
-				console.log(miMascota);
+				//console.log(miMascota);
 				//console.log(elem.id + "," + elem.nombre);
 				
 			});//end forEach
@@ -65,16 +61,10 @@ function buscar(res, nombre){
 		}
 	);
 	
-	//la conexion la cierro enseguida, no espero el resultado del callback
-	connection.end();
 }
 
 
 function listadoMascotas(res){
-	//console.log("antes del connect");
-	connection.connect();
-	//console.log("despues del connect");
-	
 	
 	connection.query('SELECT * FROM mascota', 
 		function(err, rows, fields) {
@@ -91,7 +81,7 @@ function listadoMascotas(res){
 					miMascota.edad = elem.edad;
 					
 					mascotas.push(miMascota);
-					console.log(miMascota);
+					//console.log(miMascota);
 					//console.log(elem.id + "," + elem.nombre);
 					
 				});//end forEach
@@ -104,12 +94,9 @@ function listadoMascotas(res){
 		}
 	);
 	
-	//la conexion la cierro enseguida, no espero el resultado del callback
-	connection.end();
-
 }
 
-function nuevoId(connection){
+function maxId(connection){
 	var max=1;
 	
 	connection.query('SELECT max(id) id FROM mascota', 
@@ -135,10 +122,6 @@ function nuevoId(connection){
 }
 
 function guardar(mascota){
-	//console.log("antes del connect");
-	connection.connect();
-	//console.log("despues del connect");
-	
 	
 	connection.query('INSERT INTO mascota (nombre, edad) VALUES (?, ?)', 
 			[mascota.nombre, mascota.edad],
@@ -146,13 +129,10 @@ function guardar(mascota){
 			console.log("callback");
 			if (err) throw err;
 			  
-			console.log("alta mascotas:" + mascotas);
+			//console.log("alta mascotas:" + mascotas);
 		}
 	);
 	
-	//la conexion la cierro enseguida, no espero el resultado del callback
-	connection.end();
-
 }
 
 
@@ -168,10 +148,9 @@ app.get('/mascotas', function (req, res) {
 });
 
 app.get('/mascotasBuscar/:texto', function (req, res) {
+	console.log("mascotasBuscar/")
 	console.log(req.params.texto);
 	buscar(res, req.params.texto);
-	//var data = buscar(res, req.params.texto)
-	//res.json(data);
 });
 
 app.post('/mascotasGuardar', function (req, res) {
@@ -185,13 +164,9 @@ app.post('/mascotasGuardar', function (req, res) {
 	}
 });
 
-app.get('/nuevoId', function (req, res) {
+app.get('/maxId', function (req, res) {
 	connection.connect();
-	nuevoId(connection);
-	
-	//la conexion la cierro enseguida, no espero el resultado del callback
-	connection.end();
-
+	maxId(connection);
 	res.json({"mensaje":"nuevo id en consola"});
 });
 
