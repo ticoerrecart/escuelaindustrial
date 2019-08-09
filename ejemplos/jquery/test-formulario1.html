@@ -8,24 +8,99 @@
   <script>
 	$( document ).ready(function() {
 		console.log( "ready!.  Con F12 podes abrir la consola para hacer pruebas" );
-		}
-	);
+		
+		$("#submitir3").click(function(){
+			var url = "http://localhost:3000/submitGETPosicion";
+			var params = "";
+			var datosCompletos=true;
+			$.each($("#form3").serializeArray(),function(ind, elem){
+				console.log(elem.name + "," + elem.value);
+				if(elem.value==""){
+					datosCompletos=false;
+					alert("Falta completar el dato " + elem.name)
+				}	
+				params+= "/" + elem.value;
+			});
+			
+			url =  url + params;
+			alert(url);
+			
+			if(datosCompletos){
+				$.getJSON(url).done(function( data ) {
+					//console.log(data);
+					 $.each( data, function( key,val ) {
+							console.log(key + ", " + val);
+					 });
+					alert( JSON.stringify(data));
+				});
+			}
+		});
+	
+		
+		
+		$("#submitir3-1").click(function(){
+			var url = "http://localhost:3000/submitGETAjax";
+			
+			alert(url);
+			
+			$.ajax({
+	            type : "GET",
+	            url : url,
+	            data : $("#form3-1").serialize()}
+			).done(
+					function(data){
+						console.log(data);
+						alert( JSON.stringify(data));
+			}).fail(function() {
+			    console.log( "Error, no está levantado el servidor" );
+			});
+		});
+		
+		
+		$("#submitir4").click(function(){
+			var url = "http://localhost:3000/submitPOSTAjax";
+			alert(url);
+			alert("enviamos: " + $("#form4").serialize())
+
+			$.ajax({
+		            type : "POST",
+		            url : url,
+		            data : $("#form4").serialize()}
+			).done(
+					function(data){
+						console.log(data);
+						alert( JSON.stringify(data));
+			}).fail(function() {
+			    console.log( "Error, no está levantado el servidor" );
+			});
+		});	
+		
+		
+		
+		
+	});//end doc ready
+	
+	
+	
+	
+	
+
 	
 	function verFormulario(formu){
-		console.log($("#" + formu).serialize());
+		console.log($("#" + formu).attr("id") + "->" + $("#" + formu).serialize());
 	}
   </script>
 
 </head>
 <body>
-	<h2>Formularios</h2>
+	<h2>Formularios (haciendo submit del FORM)</h2>
 	<div  style="display: flex;">
 		<span>
-			<h4>Submit por GET</h4>
-			<form action="accion1.php" id="form1">
-				<input type="text" name="nombre" value="" placeholder="nombre"><br/>
-				<input type="text" name="apellido" value="" placeholder="apellido"><br/>
-				<input type="text" name="telefono" value="" placeholder="telefono"><br/>
+			<h4>Submit por GET (viaja la info en la url->recuperamos de req.query)</h4>
+			<form action="http://localhost:3000/submitGET" id="form1" target="_blank">
+				<input type="text" name="nombre" placeholder="nombre"><br/>
+				<input type="text" name="apellido" placeholder="apellido"><br/>
+				<input type="text" name="telefono" placeholder="telefono"><br/>
 				<select name="equipoFavorito"><br/>
 					<optgroup label="local">
 						<option value="CACH">Club Atletico Chascomus</option>
@@ -44,10 +119,15 @@
 			<input type="button" onclick="verFormulario('form1');" value="Ver datos del formulario 1 en consola (F12)">
 			
 		</span>
+		
+		
+		<span>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span>
 			
 		<span>
-			<h4>Submit por POST</h4>
-			<form action="accion2.php" id="form2" method="post">
+			<h4>Submit por POST (viaja la info en el body->recuperamos de req.body)</h4>
+			<form action="http://localhost:3000/submitPOST" id="form2" method="post" target="_blank">
 				<input type="text" name="nombre" value="" placeholder="nombre"><br/>
 				<input type="text" name="apellido" value="" placeholder="apellido"><br/>
 				<input type="text" name="telefono" value="" placeholder="telefono"><br/>
@@ -65,12 +145,110 @@
 					
 				</select>
 				<br/>
-				  <input type="submit" value="Submitimos formulario por POST">
+				  <input type="submit" value="Submitimos formulario 2 por POST">
 			</form>
 			
 			<input type="button" onclick="verFormulario('form2');" value="Ver datos del formulario 2 en consola (F12)">
 		
 		</span>
 	</div>
+	
+	
+	
+	<h2>Formularios (utilizando AJAX, sin hacer submit del FORM)</h2>
+	
+	<div  style="display: flex;">
+		<span>
+			<h4>Submit por GET via AJAX (recuperando los parametros por posicion.  viaja la info en la url->recuperamos de req.params)</h4>
+			<form id="form3" target="_blank">
+				<input type="text" name="nombre" placeholder="nombre"><br/>
+				<input type="text" name="apellido" placeholder="apellido"><br/>
+				<input type="text" name="telefono" placeholder="telefono"><br/>
+				<select name="equipoFavorito"><br/>
+					<optgroup label="local">
+						<option value="CACH">Club Atletico Chascomus</option>
+						<option value="CDCH">Club Deportivo Chascomus</option>
+					</optgroup>
+					<optgroup label="internacional">
+						<option value="FCB">Futbol Club Barcelona</option>
+						<option value="RMCF">Real Madrid Club de Futbol</option>
+					</optgroup>
+					
+				</select>
+				<br/>
+				  <input type="button" value="Submitimos formulario 3 por GET" id="submitir3">
+			</form>
+			
+			<input type="button" onclick="verFormulario('form3');" value="Ver datos del formulario 3 en consola (F12)">
+			
+		</span>
+		
+		<span>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span>
+		
+		<span>
+			<h4>Submit por GET via AJAX (viaja la info en la url->recuperamos de req.query)</h4>
+			<form id="form3-1" target="_blank">
+				<input type="text" name="nombre" placeholder="nombre"><br/>
+				<input type="text" name="apellido" placeholder="apellido"><br/>
+				<input type="text" name="telefono" placeholder="telefono"><br/>
+				<select name="equipoFavorito"><br/>
+					<optgroup label="local">
+						<option value="CACH">Club Atletico Chascomus</option>
+						<option value="CDCH">Club Deportivo Chascomus</option>
+					</optgroup>
+					<optgroup label="internacional">
+						<option value="FCB">Futbol Club Barcelona</option>
+						<option value="RMCF">Real Madrid Club de Futbol</option>
+					</optgroup>
+					
+				</select>
+				<br/>
+				  <input type="button" value="Submitimos formulario por GET" id="submitir3-1">
+			</form>
+			
+			<input type="button" onclick="verFormulario('form3-1');" value="Ver datos del formulario en consola (F12)">
+			
+		</span>
+		
+		
+		
+		<span>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		</span>
+		
+		
+		<span>
+				<h4>Submit por POST via AJAX (viaja la info en el body->recuperamos de req.body)</h4>
+				<form id="form4" method="post">
+					<input type="text" name="nombre" value="" placeholder="nombre"><br/>
+					<input type="text" name="apellido" value="" placeholder="apellido"><br/>
+					<input type="text" name="telefono" value="" placeholder="telefono"><br/>
+					<select name="equipoFavorito"><br/>
+						<optgroup label="local">
+							<option value="CACH">Club Atletico Chascomus</option>
+							<option value="CDCH">Club Deportivo Chascomus</option>
+							<option value="CP">Los Picas</option>
+						</optgroup>
+						<optgroup label="internacional">
+							<option value="FCB">Futbol Club Barcelona</option>
+							<option value="RMCF">Real Madrid Club de Futbol</option>
+							<option value="AB">Atletic Bilbao</option>
+						</optgroup>
+						
+					</select>
+					<br/>
+					  <input type="button" value="Submitimos formulario 4 por POST" id="submitir4">
+				</form>
+				
+				<input type="button" onclick="verFormulario('form4');" value="Ver datos del formulario 4 en consola (F12)">
+			
+			</span>
+		
+	</div>
+	
+	
+	
 </body>
 </html>
