@@ -17,7 +17,8 @@
 				console.log(elem.name + "," + elem.value);
 				if(elem.value==""){
 					datosCompletos=false;
-					alert("Falta completar el dato " + elem.name)
+					alert("Falta completar el dato " + elem.name);
+					return false;
 				}	
 				params+= "/" + elem.value;
 			});

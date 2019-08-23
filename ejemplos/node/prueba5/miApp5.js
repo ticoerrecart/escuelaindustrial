@@ -59,11 +59,18 @@ app.get("/submitGETAjax", function (req, res){
 	res.send(result);
 });
 
+function esperar(segundos) {
+	var waitTill = new Date(new Date().getTime() + segundos * 1000);
+	while(waitTill > new Date()){}
+    console.log("continuo despues de " + segundos);
+}
+
+	
 
 app.post("/submitPOSTAjax", function (req, res){
 	console.log("submitPOSTAjax")
 	var result = mostrarReq(req);
-	
+	esperar(5);
 	res.send(result);
 });
 
