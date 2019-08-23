@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Calcular coordenadas</title>
+<style>
+html, body {
+  height: 100%;
+}
+
+.full-height {
+  height: 100%;
+}
+</style>
+
+<script src="../jquery/jquery-3.3.1.js"></script>
+<script>
+	$(document).ready(function(){
+		
+		$( "body" ).mousemove(function( event ) {
+			  var msg = "";
+			  msg += event.pageX + ", " + event.pageY;
+			  console.log(msg);
+			});
+		
+		$( "body" ).click(function( event ) {
+			  var msg = "";
+			  msg += event.pageX + ", " + event.pageY;
+			  alert(msg);
+			});
+		
+	});
+	
+		function mostrar(aula){
+			alert(aula);
+		}
+</script>
+
+</head>
+<body>
+
+<img src="escuela1.jpg" alt="imagen escuela" usemap="#escuelamap">
+
+<map name="escuelamap">
+  <area shape="rect" coords="18,16,320,260" href="javascript:mostrar('Aula 1')" alt="Aula 1">
+  <area shape="rect" coords="337,22,532,261" href="javascript:mostrar('Aula 2')" alt="Aula 2">
+  <area shape="rect" coords="18,279,532,493" href="javascript:mostrar('Aula 3')" alt="Aula 3">
+</map>
+
+<p>
+	<div> x1,y1,x2,y2	Specifies the coordinates of the top-left and bottom-right corner of the rectangle (shape="rect")</div>
+	<div>x,y,radius	Specifies the coordinates of the circle center and the radius (shape="circle")</div>
+	<div>x1,y1,x2,y2,..,xn,yn	Specifies the coordinates of the edges of the polygon. If the first and last coordinate pairs are not the same, the browser will add the last coordinate pair to close the polygon (shape="poly")</div>
+</p>
+
+</body>
+</html>
