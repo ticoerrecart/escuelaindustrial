@@ -3,21 +3,12 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
-<script>
-//Check support
-if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(buscarLocalizacion);
-}
 
-function buscarLocalizacion(position) {
-    alert('Latitud: ' + position.coords.latitude + ', Longitud: ' + position.coords.longitude);
-}
-</script>
 </head>
 <body>
 
 <a href="tel:+5492216377579">
-    Call number!
+    Llamar por tel!
 </a>
 <br/>
 <br/>
@@ -27,6 +18,21 @@ function buscarLocalizacion(position) {
 <br/>
 <br/>
 
+<span>Estas en:</span>
+<span id="geoloc"></span>
 
+<script>
+	//Check support
+	if (navigator.geolocation) {
+	    navigator.geolocation.getCurrentPosition(buscarLocalizacion);
+	}
+	
+	function buscarLocalizacion(position) {
+		var loc = 'Latitud: ' + position.coords.latitude + ', Longitud: ' + position.coords.longitude; 
+		alert(loc);
+		document.getElementById("geoloc").innerHTML = loc;
+	    
+	}
+</script>
 </body>
 </html>
