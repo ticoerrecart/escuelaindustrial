@@ -21,6 +21,9 @@
 <span>Estas en:</span>
 <span id="geoloc"></span>
 
+<span>Sensor giroscopo</span>
+<span id="giroscop"></span>
+
 <script>
 	//Check support
 	if (navigator.geolocation) {
@@ -33,6 +36,20 @@
 		document.getElementById("geoloc").innerHTML = loc;
 	    
 	}
+
+if (window.DeviceOrientationEvent) {
+    window.addEventListener('deviceorientation', function(eventData) {
+        // gamma is the left-to-right tilt in degrees
+        var gamma = eventData.gamma;
+
+        // beta is the front-to-back tilt in degrees
+        var beta = eventData.beta;
+
+        // alpha is the compass direction the device is facing in degrees
+        var alpha = eventData.alpha;
+document.getElementById("geoloc").innerHTML = gamma + "," + beta + "," + alpha;
+    }, false);
+}
 </script>
 </body>
 </html>
