@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script>
+//Check support
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(buscarLocalizacion);
+}
+
+function buscarLocalizacion(position) {
+    console.log('Latitud: ' + position.coords.latitude);
+    console.log('Longitud: ' + position.coords.longitude);
+}
+</script>
+</head>
+<body>
+
+<a href="tel:+5492216377579">
+    Call number!
+</a>
+<br/>
+<br/>
+<a href="sms:+5492216377579?body=Hola%20como va!">
+    SMS! armado desde una pagina web
+</a>
+<br/>
+<br/>
+
+
+</body>
+</html>
