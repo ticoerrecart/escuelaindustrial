@@ -23,6 +23,9 @@
 
 <span>Sensor giroscopo</span>
 <span id="giroscop"></span>
+	
+	<button onclick="vibrate1();">Vibrar 1</button>
+	<button onclick="vibrate2();">Vibrar 2</button>
 
 <script>
 	//Check support
@@ -47,9 +50,9 @@ if (window.DeviceOrientationEvent) {
 
         // alpha is the compass direction the device is facing in degrees
         var alpha = eventData.alpha;
-document.getElementById("giroscop").innerHTML = gamma + "," + beta + "," + alpha;
+	document.getElementById("giroscop").innerHTML = gamma + "," + beta + "," + alpha;
     }, false);
-	
+}	
 	
 if (window.DeviceMotionEvent) {
     window.addEventListener('devicemotion', function(eventData) {   
@@ -70,16 +73,20 @@ if (window.DeviceMotionEvent) {
     }, false);
 }
 
-	
 var vibrate = navigator.vibrate || navigator.mozVibrate;
 
-// vibrate for 1 second
-vibrate(1000);
-
-// vibrate for 1 second, then pause for half, then vibrate for another 1 second
-vibrate([1000, 500, 2000]);
+function vibrate1(){	
 	
-var battery = navigator.battery || navigator.webkitBattery || navigator.mozBattery;
+	// vibrate for 1 second
+	vibrate(1000);
+}
+	
+function vibrate2(){
+	// vibrate for 1 second, then pause for half, then vibrate for another 1 second
+	vibrate([1000, 500, 2000]);
+}
+	
+/*var battery = navigator.battery || navigator.webkitBattery || navigator.mozBattery;
 
 function logBattery(battery) {
     console.log(battery.level);
@@ -97,6 +104,7 @@ if (navigator.getBattery) {
     logBattery(battery);
 }
 
+*/
 	
 if('ondevicelight' in window) {
     window.addEventListener("devicelight", function(event) {
