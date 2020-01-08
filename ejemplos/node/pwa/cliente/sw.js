@@ -20,7 +20,38 @@ const FILES_TO_CACHE = ['/offline.html'];
     event.waitUntil(preCache());
   });
 
-  
+  self.addEventListener('activate', event => {
+    console.log("se ejecuta activate");
+    event.waitUntil(
+      caches.keys().then((keyList) => {
+        return Promise.all(keyList.map((key) => {
+          if (key !== CACHE_NAME) {
+            console.log('[ServiceWorker] Removing old cache', key);
+            return caches.delete(key);
+          }
+        }));
+      })
+    );
+  });
+
+  self.addEventListener('fetch', event => {
+    console.log("se ejecuta fetch");
+
+    if (event.request.mode !== 'navigate') {
+      // Not a page navigation, bail.
+      return;
+    }
+    event.respondWith(
+        fetch(event.request)
+            .catch(() => {
+              return caches.open(CACHE_NAME)
+                  .then((cache) => {
+                    return cache.match('offline.html');
+                  });
+            })
+    );
+  });
+
   /*self.addEventListener('install', event => {
     console.log('Service Worker installing.');
     event.waitUntil(
