@@ -1,0 +1,2 @@
+#instalar primero el certificado en el navegador, en las opciones del Chrome (Privacidad y Seguridad->Gestionar Certificados), y ponerlo en la categoria de "Entidades de Certificacion Raiz de Confianza"
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --user-data-dir=c:\ --ignore-certificate-errors --unsafely-treat-insecure-origin-as-secure=https://localhost:5001 --allow-insecure-localhost
