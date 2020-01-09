@@ -16,7 +16,7 @@
     }
 
     let publicVapidKey2 = '';
-    const publicVapidKey = 'BMilFiQJPtLRxgBF209Z5VuMZSh1_Y7ga91nx2HBLXj5mD6j5KcJN3LuORoH0FHuHGXOMv7U0gfAd9H1MxPzIAM';
+    //const publicVapidKey = 'BMilFiQJPtLRxgBF209Z5VuMZSh1_Y7ga91nx2HBLXj5mD6j5KcJN3LuORoH0FHuHGXOMv7U0gfAd9H1MxPzIAM';
 
 
    let register;
