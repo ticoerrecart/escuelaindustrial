@@ -5,6 +5,16 @@
     const webPush = require('web-push');
     const bodyParser = require('body-parser');
     const path = require('path');
+    const http = require('http');
+    const https = require('https');
+    const fs = require('fs');
+
+    var key = fs.readFileSync(__dirname + '/certs/selfsigned.key');
+    var cert = fs.readFileSync(__dirname + '/certs/selfsigned.crt');
+    var credentials  = {
+      key: key,
+      cert: cert
+    };
 
     const app = express();
 
@@ -56,7 +66,24 @@
 
     });
 
-    app.set('port', process.env.PORT || 5000);
-    const server = app.listen(app.get('port'), () => {
-      console.log(`Express running on PORT ${server.address().port}`);
+
+    app.get('/', (req, res)=>{
+        console.log("Bienvenido");
+        console.log(credentials );
+
     });
+
+    app.set('httpPort', process.env.PORT_HTTP || 5000);
+    app.set('httpsPort', process.env.PORT_HTTPS || 5001);
+
+let httpServer = http.createServer(app);
+let httpsServer = https.createServer(credentials, app);
+
+
+httpServer.listen(app.get('httpPort'), () => {
+  console.log(`Express running on PORT ${httpServer.address().port}`);
+});
+
+httpsServer.listen(app.get('httpsPort'), () => {
+  console.log(`Express running on PORT ${httpsServer.address().port}`);
+});
