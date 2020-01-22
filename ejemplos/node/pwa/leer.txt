@@ -1,0 +1,4 @@
+instalar openssl
+https://tecadmin.net/install-openssl-on-windows/
+
+correr el archivo .bat para que funcione el chrome con https
