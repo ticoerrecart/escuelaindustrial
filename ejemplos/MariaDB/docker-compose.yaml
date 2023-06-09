@@ -1,0 +1,12 @@
+mysql:
+  container_name: mariadb
+  restart: always
+  image: mariadb:latest
+  environment:
+    MARIADB_ROOT_PASSWORD: "root_pass" # TODO: Change this
+    #MYSQL_USER: "tico"
+    #MYSQL_PASSWORD: "tico"
+  volumes:
+    - /home/rodolfo/ESCUELA-INDUSTRIAL-2022/MariaDB/_data:/var/lib/mysql
+  ports:
+    - "3306:3306"

@@ -1,0 +1,12 @@
+mysql:
+  container_name: mysql
+  restart: always
+  image: mysql:latest
+  environment:
+    MYSQL_ROOT_PASSWORD: "root_pass" # TODO: Change this
+    #MYSQL_USER: "tico"
+    #MYSQL_PASSWORD: "tico"
+  volumes:
+    - /home/rodolfo/ESCUELA-INDUSTRIAL-2022/MySql/mysql_data:/var/lib/mysql
+  ports:
+    - "3306:3306"

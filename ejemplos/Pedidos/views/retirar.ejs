@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    </head>
+    <body>
+         
+        <div class="container">
+                <h4>Retirar</h4>
+                <form action="/retirar" method="post">
+                    <div class="row">
+                        <div class="col-3 ">
+                            <label for="profesor">Profesor</label>
+                            <select name="profesor" class="form-control">
+                                <%profesores.forEach(function(profesor){%>
+                                    <option value="<%= profesor.Id%>"><%= profesor.Nombre%>, <%= profesor.Apellido%></option>
+                                <%});%>
+                                <option value="2">Profesor B</option>
+                                <option value="3">Profesor C</option>
+                            </select>
+                            
+                        </div>
+                        <div class="col-3 ">
+                            <label for="profesor">Aula</label>
+                            <select name="aula" class="form-control">
+                                <%aulas.forEach(function(aula){%>
+                                    <option value="<%= aula.Id%>"><%= aula.Nombre%></option>
+                                <%});%>
+                                
+                            </select>
+                        </div>
+                    </div>    
+                    
+                    <div class="row">
+                        <div class="col-12 ">
+                            &nbsp;
+                        </div>
+                    </div>
+
+                    
+                     <div class="row">
+                        <div class="col-3 ">
+                            <label for="objetosOrigen">Objetos a Elegir</label>
+                            <select id="objetosOrigen" class="form-control" size="20"
+                                ondblclick="seleccionarObjetoClick('objetosOrigen','objetosDestino')" onkeydown="seleccionarObjeto(event,'objetosOrigen','objetosDestino')">
+                                <%objetos.forEach(function(objeto){%>
+                                    <option value="<%= objeto.Id%>"><%= objeto.Codigo%>, <%= objeto.Descripcion%>,<%= objeto.Tipo%></option>
+                                <%});%>
+                                
+                            </select>
+                        </div>
+
+                        <div class="col-3 ">
+                            <label for="objetosDestino">Objetos a Llevar</label>
+                            <select id="objetosDestino" multiple name="objetosDestino" class="form-control" size="20"
+                                ondblclick="seleccionarObjetoClick('objetosDestino','objetosOrigen')" onkeydown="seleccionarObjeto(event,'objetosDestino','objetosOrigen')">
+                                
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 ">
+                            &nbsp;
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-3 ">
+                            <input type="submit" class="btn btn-secondary" value="Ingresar" onclick="seleccionarTodos('objetosDestino')"/>
+                        </div>
+                    </div>
+                </form>
+
+                <% if(locals.error){%>
+                  <div class="row">
+                    <div class="col-3 ">
+                        <%=error%>
+                    </div>
+                  </div>
+                <%}%>
+
+     
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+        <script>
+            function seleccionarObjetoClick(origen, destino){
+                let combo = document.querySelector("#" + origen);
+                let opcionSeleccionada = combo.selectedIndex;
+                let seleccionado = combo.options[opcionSeleccionada];
+                console.log(seleccionado);
+
+                let objetosDestino =  document.querySelector("#" + destino);
+                objetosDestino.appendChild(seleccionado);
+                combo.focus();
+                combo.options[opcionSeleccionada-1].selected=true;
+                
+                //combo.select();
+            }
+
+            function seleccionarObjeto(event, origen, destino) {
+                var x = event.which || event.keyCode;
+                console.log(x);
+                if(x===13){
+                    seleccionarObjetoClick(origen, destino)
+                }
+                
+            }
+
+            function seleccionarTodos(objetos){
+                let opciones =  document.querySelector("#" + objetos).getElementsByTagName('option');
+                for(let i=0;i<opciones.length;i++){
+                    opciones[i].selected=true;
+                }
+            }
+        </script>
+    </body>
+</html>
