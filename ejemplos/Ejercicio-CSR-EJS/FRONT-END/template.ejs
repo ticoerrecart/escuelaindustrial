@@ -1,0 +1,23 @@
+<ul>
+  <% data.forEach(function(persona) { %>
+  <li>nombre: <%= persona.name %> ---- <%= persona.age %> años</li>
+  <input type="text" name="telefono" value="<%= persona.telefono%>" />
+  <img src="<%= persona.imagen %>" alt="My Image" width="400" />
+  <br />
+
+  <% if (persona.video) { %>
+  <iframe
+    width="200"
+    height="200"
+    src="<%= persona.video %>"
+    title="Los Simpson | Estreno temporada 31 | Disney+"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen
+  ></iframe>
+
+  <%}%> <% }) %>
+  <br />
+  <br />
+</ul>

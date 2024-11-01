@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EJS Client-Side Rendering</title>
+    <!-- Include EJS library for client-side rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/ejs@3.1.6/ejs.min.js"></script>
+  </head>
+  <body>
+    <h1>EJS Client-Side Rendering</h1>
+
+    <!-- Placeholder where the rendered template will be injected -->
+    <h2>contenido servidor local</h2>
+    <div id="content"></div>
+
+    <h2>contenido del servidor REMOTO</h2>
+    <div id="contentServer"></div>
+    <script>
+      // Sample data to render
+      const data = [
+        {
+          name: "Alicia",
+          age: 25,
+          imagen: "http://localhost:3000/imagen/1",
+          telefono: 12312,
+        },
+        {
+          name: "Bruno",
+          age: 30,
+          imagen: "http://localhost:3000/imagen/2",
+          telefono: 55555,
+        },
+        {
+          name: "Carlitos",
+          age: 35,
+          imagen:
+            "https://resizer.glanacion.com/resizer/v2/homero-simpson-es-un-amante-declarado-de-las-XO5SSLZVMJG4HFBYZYH6FBBV6Q.jpg?auth=b3b4aa72e1f1c8d359c4e395730b9e6cf33858d60624b480213641fd5e836198&width=1200&quality=70&smart=false&height=720",
+          telefono: 67776,
+        },
+      ];
+
+      // Function to load the external EJS template
+      async function loadTemplate(url) {
+        const response = await fetch(url);
+        const template = await response.text();
+        return template;
+      }
+
+      // Load the EJS template from an external file
+      /*loadTemplate("template.ejs")
+        .then((template) => {
+          // Render the template with the data
+          const renderedHtml = ejs.render(template, { data: data });
+
+          // Insert the rendered HTML into the content div
+          document.getElementById("content").innerHTML = renderedHtml;
+        })
+        .catch((error) => {
+          console.error("Error loading template:", error);
+        });
+*/
+
+      async function loadFromServer() {
+        // Load the EJS template from an external file
+        const template2 = await loadTemplate("template.ejs");
+        console.log(template2);
+        const dataServer = await loadTemplate("http://localhost:3000/data");
+        console.log(dataServer);
+
+        const renderedHtml2 = ejs.render(template2, {
+          data: JSON.parse(dataServer),
+        });
+        // Insert the rendered HTML into the content div
+        document.getElementById("contentServer").innerHTML = renderedHtml2;
+      }
+
+      loadFromServer();
+
+      /*async function loadFromClient() {
+        // Load the EJS template from an external file
+        const template2 = await loadTemplate("template.ejs");
+        console.log(template2);
+        const dataServer = data; //await loadTemplate("http://localhost:3000/data");
+        console.log(dataServer);
+
+        const renderedHtml2 = ejs.render(template2, {
+          data: dataServer,
+        });
+        // Insert the rendered HTML into the content div
+        document.getElementById("contentServer").innerHTML = renderedHtml2;
+      }
+
+      loadFromClient();*/
+    </script>
+  </body>
+</html>
