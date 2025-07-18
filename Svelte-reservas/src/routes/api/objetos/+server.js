@@ -7,15 +7,9 @@ import db from '$lib/db.js'; //importamos nuestra configuracion de base de datos
 
 //GET PARA LISTAR
 export async function GET() {
-	const stmt = db.prepare('SELECT id,nombre,apellido,dni,telefono FROM profesores');
-	const profesoresBD = stmt.all(); //usamos stmt.all() para un SELECT sin parametros]*/
-	console.log(profesoresBD);
-
-	const stmt2 = db.prepare('SELECT count(*) FROM profesores');
-	const cantBD = stmt2.all(); //usamos stmt.all() para un SELECT sin parametros]*/
-	console.log(cantBD);
-
-	return new Response(JSON.stringify(profesoresBD), {
+	const stmt = db.prepare('SELECT id,nombre,descripcion,categoria FROM objetos');
+	const objetos = stmt.all(); //usamos stmt.all() para un SELECT sin parametros]*/
+	return new Response(JSON.stringify(objetos), {
 		headers: { 'Content-Type': 'application/json' }
 	});
 }

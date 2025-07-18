@@ -5,41 +5,10 @@ import db from '$lib/db.js'; //importamos nuestra configuracion de base de datos
 // SELECT con parametros=> get(parametros)
 // INSERT, UPDATE, DELETE =>run()
 
-let materias = [
-	{
-		id: 1,
-		nombre: 'Fisica'
-	},
-	{
-		id: 2,
-		nombre: 'Quimica'
-	},
-	{
-		id: 3,
-		nombre: 'P.D.e I. de Sistemas'
-	},
-	{
-		id: 4,
-		nombre: 'Fisica 2'
-	},
-	{
-		id: 5,
-		nombre: 'Fisica 3'
-	},
-	{
-		id: 6,
-		nombre: 'Fisica 4'
-	},
-	{
-		id: 7,
-		nombre: 'Fisica 5'
-	}
-];
-
 //GET PARA LISTAR
 export async function GET() {
-	/*const stmt = db.prepare('SELECT id, nombre,fecha FROM materias');
-	const personas = stmt.all(); //usamos stmt.all() para un SELECT sin parametros]*/
+	const stmt = db.prepare('SELECT id,nombre,anio FROM materias');
+	const materias = stmt.all(); //usamos stmt.all() para un SELECT sin parametros]*/
 	return new Response(JSON.stringify(materias), {
 		headers: { 'Content-Type': 'application/json' }
 	});
