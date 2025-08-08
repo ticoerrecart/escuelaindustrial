@@ -5,45 +5,10 @@ import db from '$lib/db.js'; //importamos nuestra configuracion de base de datos
 // SELECT con parametros=> get(parametros)
 // INSERT, UPDATE, DELETE =>run()
 
-let objetosDisponiblesParaReservar = [
-	{
-		id: 1,
-		nombre: 'Netbook 1'
-	},
-	{
-		id: 2,
-		nombre: 'Netbook 2'
-	},
-	{
-		id: 3,
-		nombre: 'Netbook 3'
-	},
-	{
-		id: 4,
-		nombre: 'Proyector 1'
-	},
-	{
-		id: 5,
-		nombre: 'Zapatilla enchufe 1'
-	},
-	{
-		id: 6,
-		nombre: 'Proyector 2'
-	},
-	{
-		id: 7,
-		nombre: 'Zapatilla enchufe 2'
-	},
-	{
-		id: 8,
-		nombre: 'Zapatilla enchufe 3'
-	}
-];
-
 //GET PARA LISTAR
 export async function GET() {
-	/*const stmt = db.prepare('SELECT id, nombre,fecha FROM reservas');
-	const personas = stmt.all(); //usamos stmt.all() para un SELECT sin parametros]*/
+	const stmt = db.prepare('SELECT id, nombre FROM objetos where disponible=true');
+	const objetosDisponiblesParaReservar = stmt.all(); //usamos stmt.all() para un SELECT sin parametros]*/
 	return new Response(JSON.stringify(objetosDisponiblesParaReservar), {
 		headers: { 'Content-Type': 'application/json' }
 	});
@@ -79,29 +44,36 @@ export async function POST({ request }) {
 		});
 	}
 
-	// Check if name already exists (case-insensitive)
-	//usamos st
-	/*const stmsBusqueda = db.prepare('SELECT 1 FROM personas WHERE LOWER(nombre) = LOWER(?)');
-	const exists = stmsBusqueda.get(name); //usamos stmt.get para un SELECT con parametros
+	// Example transaction
+	const insertTransaction = db.transaction((idProfesor, idMateria, objetos) => {
+		const insertReserva = db.prepare(
+			'INSERT INTO reservas (fecha_creacion,id_profesor,id_materia) VALUES (?,?,?)'
+		);
 
-	if (exists) {
-		return new Response(JSON.stringify({ error: 'El nombre ya existe' }), {
-			status: 409,
-			headers: { 'Content-Type': 'application/json' }
+		const resultReserva = insertReserva.run(new Date().toISOString(), idProfesor, idMateria);
+		console.log('resultReserva', resultReserva);
+		console.log(resultReserva.lastInsertRowid);
+
+		objetos.forEach((objeto) => {
+			const insertReservaObjetos = db.prepare(
+				'INSERT INTO reserva_objetos (id_reserva, id_objeto) VALUES (?, ?)'
+			);
+			insertReservaObjetos.run(resultReserva.lastInsertRowid, objeto.id);
+
+			const updateObjetosDisponibles = db.prepare(
+				'UPDATE objetos set disponible=false WHERE id= ?'
+			);
+			updateObjetosDisponibles.run(objeto.id);
 		});
-	}
+	});
 
-	const stmt = db.prepare('INSERT INTO personas (nombre) VALUES (?)');
-	stmt.run(name.trim()); //usamos stmt.run para un INSERT, DELETE,UPDATE
-
-	const personas = db.prepare('SELECT id, nombre,fecha FROM personas').all();
-*/
+	// Call it — if one insert fails, nothing is committed
+	insertTransaction(idProfesor, idMateria, objetos);
 
 	//devolver en objetos los que estan disponibles luego de quitar las reservas!!
-	objetosDisponiblesParaReservar = objetosDisponiblesParaReservar.filter((obj) => {
-		const elemSeleccionadoAReservar = objetos.find((obj1) => obj1.id === obj.id);
-		return !elemSeleccionadoAReservar;
-	});
+	const stmt = db.prepare('SELECT id, nombre FROM objetos where disponible=true');
+	const objetosDisponiblesParaReservar = stmt.all(); //usamos stmt.all() para un SELECT sin parametros]*/
+
 	return new Response(
 		JSON.stringify({
 			success: true,

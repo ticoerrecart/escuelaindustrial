@@ -44,7 +44,7 @@ db.exec(`
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     id_reserva INTEGER,
     id_objeto INTEGER,
-    fecha_devolucion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    fecha_devolucion TIMESTAMP,
     FOREIGN KEY(id_reserva) REFERENCES reservas(id),
      FOREIGN KEY(id_objeto) REFERENCES objetos(id)
   );
