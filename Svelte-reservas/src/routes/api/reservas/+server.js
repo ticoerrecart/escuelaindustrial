@@ -6,10 +6,38 @@ import db from '$lib/db.js'; //importamos nuestra configuracion de base de datos
 // INSERT, UPDATE, DELETE =>run()
 
 //GET PARA LISTAR
-export async function GET() {
-	const stmt = db.prepare('SELECT id, nombre FROM objetos where disponible=true');
-	const objetosDisponiblesParaReservar = stmt.all(); //usamos stmt.all() para un SELECT sin parametros]*/
-	return new Response(JSON.stringify(objetosDisponiblesParaReservar), {
+export async function GET({ url }) {
+	const reservados = url.searchParams.get('reservados');
+	const idProfesor = url.searchParams.get('idProfesor');
+
+	let objetos;
+	if (reservados) {
+		console.log('reservados');
+		let query = `SELECT obj.id, obj.nombre, r.fecha_creacion, p.nombre as nombre_profesor, p.apellido as apellido_profesor, m.nombre as nombre_materia 
+			 FROM objetos obj inner join reserva_objetos ro
+			 	on obj.id = ro.id_objeto
+			inner join reservas r on r.id = ro.id_reserva
+            inner join profesores p on p.id=r.id_profesor
+			left join materias m on m.id=r.id_materia
+			 where disponible=false`;
+
+		let params = [];
+		if (idProfesor) {
+			query += ` and r.id_profesor=?`;
+			params.push(idProfesor);
+		}
+
+		// Prepare and execute
+		const stmt = db.prepare(query);
+		objetos = stmt.all(...params);
+
+		console.log(objetos.length);
+	} else {
+		const stmt = db.prepare('SELECT id, nombre FROM objetos where disponible=true');
+		objetos = stmt.all(); //usamos stmt.all() para un SELECT sin parametros]*/
+	}
+
+	return new Response(JSON.stringify(objetos), {
 		headers: { 'Content-Type': 'application/json' }
 	});
 }
@@ -72,12 +100,12 @@ export async function POST({ request }) {
 
 	//devolver en objetos los que estan disponibles luego de quitar las reservas!!
 	const stmt = db.prepare('SELECT id, nombre FROM objetos where disponible=true');
-	const objetosDisponiblesParaReservar = stmt.all(); //usamos stmt.all() para un SELECT sin parametros]*/
+	const objetosDisponibles = stmt.all(); //usamos stmt.all() para un SELECT sin parametros]*/
 
 	return new Response(
 		JSON.stringify({
 			success: true,
-			respuesta: { objetos: objetosDisponiblesParaReservar, objetosReservados: objetos.length }
+			respuesta: { objetos: objetosDisponibles, objetosReservados: objetosDisponibles.length }
 		}),
 		{
 			headers: { 'Content-Type': 'application/json' }
@@ -114,39 +142,33 @@ export async function DELETE({ request }) {
 
 //PUT PARA UPDATE
 export async function PUT({ request }) {
-	const { id, nombre } = await request.json();
-	const trimmed = nombre?.trim();
+	const seleccionadosADevolver = await request.json();
 
-	if (!id || !trimmed) {
-		return new Response(JSON.stringify({ error: 'id y nombre son requeridos' }), {
+	console.log('seleccionadosADevolver', seleccionadosADevolver);
+
+	if (!seleccionadosADevolver) {
+		return new Response(JSON.stringify({ error: 'la lista de objetos a devolver es requerido' }), {
 			status: 400,
 			headers: { 'Content-Type': 'application/json' }
 		});
 	}
 
-	// Check if name already exists (case-insensitive, excluding self)
-	const exists = db
-		.prepare('SELECT 1 FROM personas WHERE LOWER(nombre) = LOWER(?) AND id != ?')
-		.get(trimmed, id);
-	if (exists) {
-		return new Response(JSON.stringify({ error: 'El nombre ya existe' }), {
-			status: 409,
-			headers: { 'Content-Type': 'application/json' }
+	const updateTransaction = db.transaction((seleccionadosADevolver) => {
+		seleccionadosADevolver.forEach((objetoADevolver) => {
+			const updateReservaObjetos = db.prepare(
+				'UPDATE reserva_objetos SET fecha_devolucion =? where id_objeto= ?'
+			);
+			updateReservaObjetos.run(new Date().toISOString(), objetoADevolver.id);
+
+			const updateObjetosDisponibles = db.prepare('UPDATE objetos set disponible=true WHERE id= ?');
+			updateObjetosDisponibles.run(objetoADevolver.id);
 		});
-	}
+	});
 
-	const stmt = db.prepare('UPDATE personas SET nombre = ? WHERE id = ?');
-	const info = stmt.run(trimmed, id); //usamos stmt.run para un INSERT, DELETE,UPDATE
+	// Call it — if one insert fails, nothing is committed
+	updateTransaction(seleccionadosADevolver);
 
-	if (info.changes === 0) {
-		return new Response(JSON.stringify({ error: 'No se encontro a la persona' }), {
-			status: 404,
-			headers: { 'Content-Type': 'application/json' }
-		});
-	}
-
-	const personas = db.prepare('SELECT id, nombre, fecha FROM personas').all();
-	return new Response(JSON.stringify({ success: true, personas }), {
+	return new Response(JSON.stringify({ success: true }), {
 		headers: { 'Content-Type': 'application/json' }
 	});
 }
