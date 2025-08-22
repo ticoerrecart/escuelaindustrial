@@ -19,7 +19,7 @@ export async function GET({ url }) {
 			inner join reservas r on r.id = ro.id_reserva
             inner join profesores p on p.id=r.id_profesor
 			left join materias m on m.id=r.id_materia
-			 where disponible=false`;
+			 where disponible=false and ro.fecha_devolucion is null`;
 
 		let params = [];
 		if (idProfesor) {
