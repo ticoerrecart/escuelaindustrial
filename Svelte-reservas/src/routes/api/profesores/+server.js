@@ -7,7 +7,7 @@ import db from '$lib/db.js'; //importamos nuestra configuracion de base de datos
 
 //GET PARA LISTAR
 export async function GET() {
-	const stmt = db.prepare('SELECT id,nombre,apellido,dni,telefono FROM profesores');
+	const stmt = db.prepare('SELECT id,nombre,apellido,dni,telefono,fecha_creacion FROM profesores');
 	const profesoresBD = stmt.all(); //usamos stmt.all() para un SELECT sin parametros]*/
 	console.log(profesoresBD);
 
@@ -24,27 +24,16 @@ export async function GET() {
 export async function POST({ request }) {
 	const body = await request.json();
 	console.log('body', body);
+//nombre, apellido, dni, telefono
 
-	const idProfesor = body.idProfesor;
-	const idMateria = body.idMateria;
-	const objetos = body.objetos;
+	const nombre = body.nombre;
+	const apellido = body.apellido;
+	const dni = body.dni;
+	const telefono = body.telefono;
 
-	if (!idProfesor) {
-		return new Response(JSON.stringify({ error: 'Profesor es requerido' }), {
-			status: 400,
-			headers: { 'Content-Type': 'application/json' }
-		});
-	}
-
-	if (!idMateria) {
-		return new Response(JSON.stringify({ error: 'Materia es requerido' }), {
-			status: 400,
-			headers: { 'Content-Type': 'application/json' }
-		});
-	}
-
-	if (!objetos) {
-		return new Response(JSON.stringify({ error: 'Seleccione objetos a reservar' }), {
+	
+	if (!nombre || !apellido || !dni) {
+		return new Response(JSON.stringify({ error: 'Nombre, apellido y DNI son requeridos' }), {
 			status: 400,
 			headers: { 'Content-Type': 'application/json' }
 		});
@@ -52,31 +41,25 @@ export async function POST({ request }) {
 
 	// Check if name already exists (case-insensitive)
 	//usamos st
-	/*const stmsBusqueda = db.prepare('SELECT 1 FROM personas WHERE LOWER(nombre) = LOWER(?)');
-	const exists = stmsBusqueda.get(name); //usamos stmt.get para un SELECT con parametros
+	const stmsBusqueda = db.prepare('SELECT 1 FROM profesores WHERE dni = ? ');
+	const exists = stmsBusqueda.get(dni); //usamos stmt.get para un SELECT con parametros
 
 	if (exists) {
-		return new Response(JSON.stringify({ error: 'El nombre ya existe' }), {
+		return new Response(JSON.stringify({ error: 'El profesor ya existe' }), {
 			status: 409,
 			headers: { 'Content-Type': 'application/json' }
 		});
 	}
 
-	const stmt = db.prepare('INSERT INTO personas (nombre) VALUES (?)');
-	stmt.run(name.trim()); //usamos stmt.run para un INSERT, DELETE,UPDATE
+	const stmt = db.prepare('INSERT INTO profesores (nombre, apellido, dni, telefono) VALUES (?, ?, ?, ?)');
+	stmt.run(nombre.trim(), apellido.trim(), dni.trim(), telefono.trim()); //usamos stmt.run para un INSERT, DELETE,UPDATE
 
-	const personas = db.prepare('SELECT id, nombre,fecha FROM personas').all();
-*/
+	const profesores = db.prepare('SELECT id, nombre, apellido, dni, telefono, fecha_creacion FROM profesores').all();
 
-	//devolver en objetos los que estan disponibles luego de quitar las reservas!!
-	objetosDisponiblesParaReservar = objetosDisponiblesParaReservar.filter((obj) => {
-		const elemSeleccionadoAReservar = objetos.find((obj1) => obj1.id === obj.id);
-		return !elemSeleccionadoAReservar;
-	});
 	return new Response(
 		JSON.stringify({
 			success: true,
-			respuesta: { objetos: objetosDisponiblesParaReservar, objetosReservados: objetos.length }
+			 profesores 
 		}),
 		{
 			headers: { 'Content-Type': 'application/json' }
@@ -95,29 +78,31 @@ export async function DELETE({ request }) {
 		});
 	}
 
-	const stmt = db.prepare('DELETE FROM personas WHERE id = ?');
+	const stmt = db.prepare('DELETE FROM profesores WHERE id = ?');
 	const info = stmt.run(id); //usamos stmt.run para un INSERT, DELETE,UPDATE
 
 	if (info.changes === 0) {
-		return new Response(JSON.stringify({ error: 'No se encontro a la persona' }), {
+		return new Response(JSON.stringify({ error: 'No se encontro al profesor' }), {
 			status: 404,
 			headers: { 'Content-Type': 'application/json' }
 		});
 	}
 
-	const personas = db.prepare('SELECT id, nombre, fecha FROM personas').all();
-	return new Response(JSON.stringify({ success: true, personas }), {
+	const profesores = db.prepare('SELECT id, nombre, apellido, dni, telefono, fecha_creacion FROM profesores').all();
+	return new Response(JSON.stringify({ success: true, profesores }), {
 		headers: { 'Content-Type': 'application/json' }
 	});
 }
 
 //PUT PARA UPDATE
 export async function PUT({ request }) {
-	const { id, nombre } = await request.json();
-	const trimmed = nombre?.trim();
+	const { id, nombre, apellido, dni, telefono } = await request.json();
+	const trimmedName = nombre?.trim();
+console.log(id, nombre, apellido, dni, telefono)
 
-	if (!id || !trimmed) {
-		return new Response(JSON.stringify({ error: 'id y nombre son requeridos' }), {
+	
+	if (!id || !dni) {
+		return new Response(JSON.stringify({ error: 'id y dni son requeridos' }), {
 			status: 400,
 			headers: { 'Content-Type': 'application/json' }
 		});
@@ -125,17 +110,17 @@ export async function PUT({ request }) {
 
 	// Check if name already exists (case-insensitive, excluding self)
 	const exists = db
-		.prepare('SELECT 1 FROM personas WHERE LOWER(nombre) = LOWER(?) AND id != ?')
-		.get(trimmed, id);
+		.prepare('SELECT 1 FROM profesores WHERE dni = ? AND id != ?')
+		.get(dni, id);
 	if (exists) {
-		return new Response(JSON.stringify({ error: 'El nombre ya existe' }), {
+		return new Response(JSON.stringify({ error: 'El dni del profesor ya existe' }), {
 			status: 409,
 			headers: { 'Content-Type': 'application/json' }
 		});
 	}
 
-	const stmt = db.prepare('UPDATE personas SET nombre = ? WHERE id = ?');
-	const info = stmt.run(trimmed, id); //usamos stmt.run para un INSERT, DELETE,UPDATE
+	const stmt = db.prepare('UPDATE profesores SET nombre = ?, apellido=?,dni=?,telefono=? WHERE id = ?');
+	const info = stmt.run(trimmedName,apellido,dni,telefono, id); //usamos stmt.run para un INSERT, DELETE,UPDATE
 
 	if (info.changes === 0) {
 		return new Response(JSON.stringify({ error: 'No se encontro a la persona' }), {
@@ -144,8 +129,9 @@ export async function PUT({ request }) {
 		});
 	}
 
-	const personas = db.prepare('SELECT id, nombre, fecha FROM personas').all();
-	return new Response(JSON.stringify({ success: true, personas }), {
+	const profesores = db.prepare('SELECT id, nombre,apellido,dni,telefono, fecha_creacion FROM profesores').all();
+	
+	return new Response(JSON.stringify({ success: true, profesores }), {
 		headers: { 'Content-Type': 'application/json' }
 	});
 }
