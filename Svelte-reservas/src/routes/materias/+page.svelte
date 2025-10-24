@@ -1,173 +1,135 @@
 <script>
-  import { onMount } from "svelte";
+	import { onMount } from 'svelte';
 
-  let nombre = "";
-  let anio = "";
-  let materias = [];
-  let errores = "";
-  let seleccionadoId = null;
+	let nombre = '';
+	let profesor_id = '';
+	let materias = [];
+	let profesores = [];
+	let mensaje = '';
+	let clases = [];
 
-  async function agregarMateria() {
-    const res = await fetch("/api/materias", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ nombre, anio }),
-    });
-    const data = await res.json();
+	const diasSemana = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo'];
 
-    if (data.error) {
-      errores = data.error;
-      return;
-    }
-    materias = data.materias ?? materias;
-    errores = "";
-  }
+	async function cargarProfesores() {
+		const res = await fetch('/api/profesores');
+		profesores = await res.json();
+	}
 
-  async function obtenerMateria() {
-    const res = await fetch("/api/materias");
-    materias = await res.json();
-  }
+	async function cargarMaterias() {
+		const res = await fetch('/api/materias');
+		materias = await res.json();
+		console.log(materias);
+	}
 
-  function seleccionarMateria(m) {
-    nombre = m.nombre;
-    anio = m.anio;
-    seleccionadoId = m.id;
-    errores = "";
-  }
+	function agregarClase() {
+		clases = [...clases, { dias: [], hora_inicio: '', hora_fin: '' }];
+	}
 
-  async function modificarMateria() {
-    if (!seleccionadoId) {
-      errores = "Primero seleccioná una materia desde la lista (botón Cargar).";
-      return;
-    }
+	function eliminarClase(index) {
+		clases = clases.filter((_, i) => i !== index);
+	}
 
-    const res = await fetch(`/api/materias`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        id: seleccionadoId,
-        nombre,
-        anio,
-      }),
-    });
-    const data = await res.json();
+	function toggleDia(claseIndex, dia) {
+		const dias = clases[claseIndex].dias;
+		if (dias.includes(dia)) {
+			clases[claseIndex].dias = dias.filter((d) => d !== dia);
+		} else {
+			clases[claseIndex].dias = [...dias, dia];
+		}
+	}
 
-    if (data.error) {
-      errores = data.error;
-      return;
-    }
+	async function guardarMateria() {
+		if (!nombre.trim()) {
+			mensaje = '❌ Debes ingresar un nombre de materia';
+			return;
+		}
 
-    errores = "";
-    materias = data.materias ?? materias;
-  }
+		const res = await fetch('/api/materias', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ nombre, profesor_id, clases })
+		});
 
-  async function eliminarMateria() {
-    if (!seleccionadoId) {
-      errores = "Primero seleccioná una materia desde la lista (botón Cargar).";
-      return;
-    }
+		const data = await res.json();
+		if (data.success) {
+			mensaje = '✅ Materia agregada con ID ' + data.id;
+			nombre = '';
+			profesor_id = '';
+			clases = [];
+			await cargarMaterias();
+		} else {
+			mensaje = '❌ Error: ' + (data.error || 'no se pudo guardar');
+		}
+	}
 
-    const res = await fetch(`/api/materias`, {
-      method: "DELETE",
-      body: JSON.stringify({ id: seleccionadoId }),
-    });
-    const data = await res.json();
-
-    if (data.error) {
-      errores = data.error;
-      return;
-    }
-
-    errores = "";
-    materias = data.materias ?? materias;
-  }
-
-  onMount(obtenerMateria);
+	onMount(async () => {
+		await cargarProfesores();
+		await cargarMaterias();
+	});
 </script>
 
-<h2>Ingrese materias</h2>
+<h2>Alta de materia</h2>
 
-<div class="form">
-  <input bind:value={nombre} placeholder="Ingrese el nombre" />
-  <input bind:value={anio} placeholder="Ingrese el anio" />
+<form on:submit|preventDefault={guardarMateria}>
+	<div>
+		<label
+			>Nombre:
+			<input type="text" bind:value={nombre} required />
+		</label>
+	</div>
+	<div>
+		<label
+			>Profesor:
+			<select bind:value={profesor_id}>
+				<option value="">-- Seleccionar --</option>
+				{#each profesores as p}
+					<option value={p.id}>{p.nombre}</option>
+				{/each}
+			</select>
+		</label>
+	</div>
 
-  <div class="acciones-form">
-    <button on:click={agregarMateria}>Agregar</button>
-    <button on:click={modificarMateria} disabled={!seleccionadoId}
-      >Modificar</button
-    >
-    <button on:click={eliminarMateria} disabled={!seleccionadoId}
-      >Eliminar</button
-    >
-  </div>
-</div>
+	<h3>Clases</h3>
+	{#each clases as c, i}
+		<div style="margin-bottom: 0.5rem; border:1px solid #ccc; padding:0.5rem;">
+			<div>
+				<label>Hora inicio: <input type="time" bind:value={c.hora_inicio} /></label>
+				<label>Hora fin: <input type="time" bind:value={c.hora_fin} /></label>
+			</div>
+			<div>
+				{#each diasSemana as d}
+					<label style="margin-right:0.5rem;">
+						<input type="checkbox" checked={c.dias.includes(d)} on:change={() => toggleDia(i, d)} />
+						{d}
+					</label>
+				{/each}
+			</div>
+			<button type="button" on:click={() => eliminarClase(i)}>Eliminar clase</button>
+		</div>
+	{/each}
 
-{#if errores}
-  <p class="error">{errores}</p>
-{/if}
+	<button type="button" on:click={agregarClase} disabled={!nombre.length || !profesor_id}
+		>Agregar clase</button
+	>
+	<div style="margin-top: 1rem;">
+		<button type="submit" disabled={!nombre.length || !profesor_id || !clases.length}
+			>Guardar materia y clases</button
+		>
+	</div>
+</form>
 
-<div class="row align-items-header">
-  <div class="col">ID</div>
-  <div class="col">Nombre</div>
-  <div class="col">Anio</div>
-  <div class="col">Creacion</div>
-  <div class="col">Acción</div>
-</div>
+<p>{mensaje}</p>
 
-{#each materias as materia (materia.id)}
-  <div
-    class="row align-items-body"
-    class:selected={materia.id === seleccionadoId}
-  >
-    <div class="col">{materia.id}</div>
-    <div class="col">{materia.nombre}</div>
-    <div class="col">{materia.anio}</div>
-    <div class="col">{materia.fecha_creacion}</div>
-    <div class="col">
-      <button on:click={() => seleccionarMateria(materia)}>Cargar</button>
-    </div>
-  </div>
-{/each}
-
-<style>
-  .error {
-    color: red;
-  }
-  .personas {
-    color: green;
-  }
-
-  .row.align-items-header {
-    font-weight: bold;
-    background-color: blueviolet;
-    margin-top: 15px;
-  }
-
-  .col {
-    text-align: center;
-    padding: 0.5px;
-    border-width: 1.8px;
-    border-style: solid;
-    border-color: black;
-  }
-
-  .acciones-form {
-    display: flex;
-    gap: 8px;
-    margin-top: 8px;
-    flex-wrap: wrap;
-  }
-
-  .seleccion {
-    margin-top: 6px;
-    font-style: italic;
-  }
-
-  .row.align-items-body.selected {
-    background-color: #f3f3f3;
-  }
-
-  .form {
-    margin-bottom: 10px;
-  }
-</style>
+<h3>Materias registradas</h3>
+<ul>
+	{#each materias as m}
+		<li>
+			<strong>{m.id} - {m.nombre}</strong> ({m.profesor || 'Sin profesor'})
+			<ul>
+				{#each m.clases as c}
+					<li>{c.dias.join(', ')} {c.hora_inicio} - {c.hora_fin}</li>
+				{/each}
+			</ul>
+		</li>
+	{/each}
+</ul>
